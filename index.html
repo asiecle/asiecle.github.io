@@ -1,25 +1,21 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Challenge: Links you love you</title>
-    </head>
-    <body>
-        <script>
-           
-            $('.image-link').magnificPopup({type:'image'});
-           
-        </script>
-        
-        <h1>Links I love me</h1>
-        
-        <ul>
-            <li><a href="https://seneca.juntadeandalucia.es/seneca/jsp/portal/"> Seneca</a></li>
-            <li><a href="https://classroom.google.com/h">Classroom</a></li>
-            <li><a target="_blank" href="/tablas.html">Tablas</a></li>
-        </ul>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Popup with mixed content types</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css'><link rel="stylesheet" href="./style.css">
 
-        <a class="image-link" href="https://www.kasandbox.org/programming-images/cute/Heart.png">corazon</a>
-        
-    </body>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<button id="open-popup">Open popup</button>
+
+<div id="my-popup" class="mfp-hide white-popup">
+  Inline popup
+</div>
+<!-- partial -->
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js'></script><script  src="./script.js"></script>
+
+</body>
 </html>
