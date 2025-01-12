@@ -33,12 +33,13 @@
   </style>
 </head>
 <body>
-  <div id="time">00:00:00</div>
+  <div id="time">00:00.00</div>
 
   <script>
     const timeDisplay = document.getElementById("time");
     const socket = new WebSocket(`wss://${location.host}`);
-
+    setInterval(MantenerDespierto, 40000);
+    
     socket.addEventListener("message", (event) => {
       const data = JSON.parse(event.data);
       if (data.type === "time") {
@@ -50,6 +51,10 @@
         timeDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(centiseconds).padStart(2, '0')}`;
       }
     });
+    function MantenerDespierto() {
+      console.log("La función se ejecutó a las " + new Date().toLocaleTimeString());
+      ws.send(JSON.stringify({ type: 'vivo' }));
+    }
   </script>
 </body>
 </html>
