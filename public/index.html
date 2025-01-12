@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cronómetro WebSocket</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    #timer {
+      font-size: 48px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cronómetro WebSocket</h1>
+  <div id="timer">0</div>
+  <button id="start">Start</button>
+  <button id="stop">Stop</button>
+  <button id="reset">Reset</button>
+
+  <script>
+    const timerDisplay = document.getElementById('timer');
+    const startButton = document.getElementById('start');
+    const stopButton = document.getElementById('stop');
+    const resetButton = document.getElementById('reset');
+
+    const ws = new WebSocket(`ws://${location.host}`);
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === 'update') {
+        timerDisplay.textContent = data.timer;
+      }
+    };
+
+    startButton.onclick = () => ws.send(JSON.stringify({ type: 'start' }));
+    stopButton.onclick = () => ws.send(JSON.stringify({ type: 'stop' }));
+    resetButton.onclick = () => ws.send(JSON.stringify({ type: 'reset' }));
+  </script>
+</body>
+</html>
