@@ -163,7 +163,7 @@
     }
 
     // Conexión WebSocket
-    const ws = new WebSocket(`ws://${location.host}`);
+    const ws = new WebSocket(`wss://${location.host}`);
 
     // Manejar los mensajes del servidor
     ws.onmessage = (event) => {
