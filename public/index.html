@@ -119,8 +119,8 @@
       }
 
       // Mostrar u ocultar la tabla según el mensaje
-      if (data.action === "toggleVisibility") {
-        if (data.visible) {
+      if (data.type === "checkboxState") {
+        if (data.isChecked) {
           timerTable.style.display = "table";
         } else {
           timerTable.style.display = "none";
