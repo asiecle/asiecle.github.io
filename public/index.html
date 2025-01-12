@@ -152,6 +152,7 @@
     // Manejar los mensajes del servidor
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
+      console.log('Recibido: ' + data.type);
       if (data.type === 'start') {
         startTimer();
       } else if (data.type === 'stop') {
@@ -163,6 +164,7 @@
 
     // Enviar mensajes al servidor al hacer clic en los botones
     startButton.onclick = () => {
+      console.log('Enviado start...');
       ws.send(JSON.stringify({ type: 'start' }));
     };
 
