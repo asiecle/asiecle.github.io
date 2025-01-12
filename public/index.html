@@ -108,6 +108,7 @@
     
     socket.addEventListener("message", (event) => {
       const data = JSON.parse(event.data);
+      console.log("recibido... " + data.action);
       if (data.type === "time") {
         const centiseconds = data.time % 100;
         const totalSeconds = Math.floor(data.time / 100);
