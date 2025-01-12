@@ -53,7 +53,7 @@
     });
     function MantenerDespierto() {
       console.log("La función se ejecutó a las " + new Date().toLocaleTimeString());
-      ws.send(JSON.stringify({ type: 'vivo' }));
+      socket.send(JSON.stringify({ action: 'vivo' }));
     }
   </script>
 </body>
