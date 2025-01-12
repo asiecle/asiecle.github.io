@@ -1,60 +1,38 @@
-const express = require('express');
-const http = require('http');
-const WebSocket = require('ws');
+const express = require("express");
+const http = require("http");
+const WebSocket = require("ws");
 
 const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
-let timer = 0;
-let interval = null;
-
-// Servir la página web estática
-app.use(express.static('public'));
+let connections = [];
 
 // Manejo de conexiones WebSocket
-wss.on('connection', (ws) => {
-  console.log('Cliente conectado');
+wss.on("connection", (ws) => {
+  connections.push(ws);
+  console.log("Client connected. Total clients:", connections.length);
 
-  // Enviar el tiempo inicial al cliente
-  ws.send(JSON.stringify({ type: 'update', timer }));
+  // Escuchar mensajes del cliente
+  ws.on("message", (message) => {
+    console.log("Message received:", message);
 
-  ws.on('message', (message) => {
-    const data = JSON.parse(message);
-
-    if (data.type === 'start') {
-      if (!interval) {
-        interval = setInterval(() => {
-          timer++;
-          broadcast({ type: 'update', timer });
-        }, 1000);
+    // Reenviar el mensaje a todos los clientes excepto al emisor
+    connections.forEach((client) => {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
+        client.send(message);
       }
-    } else if (data.type === 'stop') {
-      clearInterval(interval);
-      interval = null;
-    } else if (data.type === 'reset') {
-      timer = 0;
-      broadcast({ type: 'update', timer });
-    }
+    });
   });
 
-  ws.on('close', () => {
-    console.log('Cliente desconectado');
+  // Eliminar la conexión cerrada
+  ws.on("close", () => {
+    connections = connections.filter((client) => client !== ws);
+    console.log("Client disconnected. Total clients:", connections.length);
   });
 });
 
-// Función para enviar mensajes a todos los clientes conectados
-function broadcast(data) {
-  wss.clients.forEach((client) => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(JSON.stringify(data));
-    }
-  });
-}
-
-// Iniciar el servidor
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
-
