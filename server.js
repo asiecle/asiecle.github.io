@@ -31,6 +31,12 @@ wss.on("connection", (ws) => {
       currentTime = 0;
       broadcastTime();
     }
+    } else if (data.action === "toggleVisibility") {
+      clients.forEach(client => {
+      if (client !== ws) { // No enviar el mensaje al cliente que lo envió
+        client.send(message);
+      } 
+    }
   });
 
   ws.on("close", () => {
