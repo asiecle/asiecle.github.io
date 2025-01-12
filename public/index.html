@@ -29,7 +29,7 @@
     const stopButton = document.getElementById('stop');
     const resetButton = document.getElementById('reset');
 
-    const ws = new WebSocket(`ws://$https://asiecle-github-io.onrender.com`);
+    const ws = new WebSocket(`wss://${location.host}`);
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
