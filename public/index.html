@@ -16,7 +16,7 @@
 
   <script>
     const timeDisplay = document.getElementById("time");
-    const socket = new WebSocket(`wss://${window.location.host}`);
+    const socket = new WebSocket(`wss://${location.host}`);
 
     socket.addEventListener("message", (event) => {
       const data = JSON.parse(event.data);
