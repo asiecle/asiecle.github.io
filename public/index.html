@@ -1,192 +1,34 @@
+<!-- public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cronómetro Transparente</title>
+  <title>Cronómetro</title>
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      background: transparent; /* Fondo transparente */
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Estilo de la tabla que contiene el logo y el cronómetro */
-    #timer-container {
-      position: fixed;
-      top: 10px; /* Ajusta la distancia desde la parte superior */
-      left: 50%;
-      transform: translateX(-50%); /* Centra la tabla */
-      background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
-      color: white;
-      font-size: 36px; /* Tamaño del cronómetro */
-      padding: 5px 20px;
-      border-radius: 10px;
-      z-index: 1000; /* Asegura que se muestre encima del contenido */
-    }
-
-    /* Estilos para la tabla */
-    table {
-      border: 0;
-      padding: 0;
-      margin: 0;
-      text-align: center;
-    }
-
-    td {
-      padding: 5px;
-    }
-
-    #logo {
-      width: 40px; /* Ajusta el tamaño del logo */
-      height: auto;
-    }
-
-    /* Estilo de los botones */
-    #controls {
-      position: absolute;
-      top: 80px; /* Ajusta la distancia de los controles */
-      text-align: center;
-    }
-
-    button {
-      padding: 10px 20px;
-      margin: 10px;
-      font-size: 16px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    #time { font-size: 2em; }
   </style>
 </head>
 <body>
-
-  <!-- Contenedor con el logo y el cronómetro -->
-  <div id="timer-container">
-    <table>
-      <tr>
-        <td><img id="logo" src="images/logo.png" alt="Logo"></td>
-        <td id="timer-overlay">00:00:00</td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- Controles -->
-  <div id="controls">
-    <button id="start">Iniciar</button>
-    <button id="stop">Detener</button>
-    <button id="reset">Reiniciar</button>
-  </div>
+  <h1>Cronómetro</h1>
+  <div id="time">00:00:00</div>
 
   <script>
-    // Selección de elementos
-    const timerDisplay = document.getElementById('timer-overlay');
-    const startButton = document.getElementById('start');
-    const stopButton = document.getElementById('stop');
-    const resetButton = document.getElementById('reset');
+    const timeDisplay = document.getElementById("time");
+    const socket = new WebSocket(`wss://${window.location.host}`);
 
-    let startTime;
-    let updatedTime;
-    let difference;
-    let tInterval;
-    let running = false;
-
-    // Formato del cronómetro
-    function formatTime(ms) {
-      const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((ms % (1000 * 60)) / 1000);
-      const centiseconds = Math.floor((ms % 1000) / 10);
-      return `${padZero(minutes)}:${padZero(seconds)}:${padZero(centiseconds)}`;
-    }
-
-    // Rellenar con ceros si el valor es menor a 10
-    function padZero(num) {
-      return num < 10 ? '0' + num : num;
-    }
-
-    // Actualizar el cronómetro
-    function startTimer() {
-      if (!running) {
-        running = true;
-        startTime = new Date().getTime() - difference;
-        tInterval = setInterval(updateTime, 10);
-      }
-    }
-
-    // Detener el cronómetro
-    function stopTimer() {
-      running = false;
-      clearInterval(tInterval);
-    }
-
-    // Reiniciar el cronómetro
-    function resetTimer() {
-      running = false;
-      clearInterval(tInterval);
-      difference = 0;
-      timerDisplay.textContent = '00:00:00';
-    }
-
-    // Actualizar el cronómetro
-    function updateTime() {
-      updatedTime = new Date().getTime();
-      difference = updatedTime - startTime;
-      timerDisplay.textContent = formatTime(difference);
-    }
-
-    // Conexión WebSocket
-    const ws = new WebSocket(`wss://${location.host}`);
-
-    // Manejar los mensajes del servidor
-    ws.onmessage = (event) => {
+    socket.addEventListener("message", (event) => {
       const data = JSON.parse(event.data);
-      console.log('Recibido: ' + data.type);
-      if (data.type === 'start') {
-        startTimer();
-      } else if (data.type === 'stop') {
-        stopTimer();
-      } else if (data.type === 'reset') {
-        resetTimer();
+      if (data.type === "time") {
+        const centiseconds = data.time % 100;
+        const totalSeconds = Math.floor(data.time / 100);
+        const seconds = totalSeconds % 60;
+        const minutes = Math.floor(totalSeconds / 60);
+
+        timeDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(centiseconds).padStart(2, '0')}`;
       }
-    };
-
-    // Enviar mensajes al servidor al hacer clic en los botones
-    startButton.onclick = () => {
-      console.log('Enviado start...');
-      ws.send(JSON.stringify({ type: 'start' }));
-    };
-
-    stopButton.onclick = () => {
-      ws.send(JSON.stringify({ type: 'stop' }));
-    };
-
-    resetButton.onclick = () => {
-      ws.send(JSON.stringify({ type: 'reset' }));
-    };
-
-    ws.onerror = (error) => {
-      console.error('Error en WebSocket:', error);
-    };
-
-    ws.onopen = () => {
-      console.log('Conectado al servidor WebSocket');
-    };
-
-    ws.onclose = () => {
-      console.log('Conexión WebSocket cerrada');
-    };
+    });
   </script>
 </body>
 </html>
