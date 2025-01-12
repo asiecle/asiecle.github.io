@@ -21,6 +21,7 @@
 
     document.getElementById("start").addEventListener("click", () => {
       socket.send(JSON.stringify({ action: "start" }));
+      setInterval(MantenerDespierto, 20000);
     });
 
     document.getElementById("pause").addEventListener("click", () => {
@@ -30,6 +31,11 @@
     document.getElementById("reset").addEventListener("click", () => {
       socket.send(JSON.stringify({ action: "reset" }));
     });
+
+    function MantenerDespierto() {
+      console.log("La función se ejecutó a las " + new Date().toLocaleTimeString());
+      socket.send(JSON.stringify({ action: 'vivo' }));
+    }
   </script>
 </body>
 </html>
