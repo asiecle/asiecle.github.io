@@ -3,36 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cronómetro WebSocket</title>
+  <title>Cronómetro sobre Video</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    body, html {
       margin: 0;
       padding: 0;
       height: 100%;
+      width: 100%;
+      background: transparent; /* Fondo transparente */
       position: relative;
-      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    /* Estilos para el overlay */
-    #timer-overlay {
-      position: fixed; /* Fija el cronómetro en la pantalla */
+    /* Estilo para el video de fondo */
+    #background-video {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+      height: 100%;
+      object-fit: cover; /* Hace que el video cubra toda la pantalla */
+      z-index: -1; /* Asegura que el video quede detrás del cronómetro */
+    }
+
+    /* Estilo de la tabla que contiene el logo y el cronómetro */
+    #timer-container {
+      position: fixed;
+      top: 10px; /* Ajusta la distancia desde la parte superior */
+      left: 50%;
+      transform: translateX(-50%); /* Centra la tabla */
+      background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
       color: white;
-      font-size: 48px;
+      font-size: 36px; /* Tamaño del cronómetro */
+      padding: 5px 20px;
+      border-radius: 10px;
+      z-index: 1000; /* Asegura que se muestre encima del video */
+    }
+
+    /* Estilos para la tabla */
+    table {
+      border: 0;
+      padding: 0;
+      margin: 0;
       text-align: center;
-      padding: 10px 0;
-      z-index: 1000; /* Asegura que se muestra encima de otros elementos */
+    }
+
+    td {
+      padding: 5px;
+    }
+
+    #logo {
+      width: 40px; /* Ajusta el tamaño del logo */
+      height: auto;
     }
 
     /* Estilo de los botones */
     #controls {
+      position: absolute;
+      top: 80px; /* Ajusta la distancia de los controles del video */
       text-align: center;
-      margin-top: 100px; /* Asegura que no se solapen con el overlay */
     }
+
     button {
       padding: 10px 20px;
       margin: 10px;
@@ -43,14 +76,28 @@
       cursor: pointer;
       border-radius: 5px;
     }
+
     button:hover {
       background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <!-- Overlay con el cronómetro -->
-  <div id="timer-overlay">0</div>
+  <!-- Video de fondo -->
+  <video id="background-video" autoplay muted loop>
+    <source src="tu_video.mp4" type="video/mp4">
+    Tu navegador no soporta el video.
+  </video>
+
+  <!-- Tabla con el logo y el cronómetro -->
+  <div id="timer-container">
+    <table>
+      <tr>
+        <td><img id="logo" src="tu_logo.png" alt="Logo"></td>
+        <td id="timer-overlay">00:00:00</td>
+      </tr>
+    </table>
+  </div>
 
   <!-- Controles -->
   <div id="controls">
@@ -66,18 +113,71 @@
     const stopButton = document.getElementById('stop');
     const resetButton = document.getElementById('reset');
 
-    // Configurar la conexión WebSocket
-    const ws = new WebSocket(`wss://${location.host}`);
+    let startTime;
+    let updatedTime;
+    let difference;
+    let tInterval;
+    let running = false;
 
-    // Manejar mensajes recibidos del servidor
+    // Formato del cronómetro
+    function formatTime(ms) {
+      const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+      const centiseconds = Math.floor((ms % 1000) / 10);
+      return `${padZero(minutes)}:${padZero(seconds)}:${padZero(centiseconds)}`;
+    }
+
+    // Rellenar con ceros si el valor es menor a 10
+    function padZero(num) {
+      return num < 10 ? '0' + num : num;
+    }
+
+    // Actualizar el cronómetro
+    function startTimer() {
+      if (!running) {
+        running = true;
+        startTime = new Date().getTime() - difference;
+        tInterval = setInterval(updateTime, 10);
+      }
+    }
+
+    // Detener el cronómetro
+    function stopTimer() {
+      running = false;
+      clearInterval(tInterval);
+    }
+
+    // Reiniciar el cronómetro
+    function resetTimer() {
+      running = false;
+      clearInterval(tInterval);
+      difference = 0;
+      timerDisplay.textContent = '00:00:00';
+    }
+
+    // Actualizar el cronómetro
+    function updateTime() {
+      updatedTime = new Date().getTime();
+      difference = updatedTime - startTime;
+      timerDisplay.textContent = formatTime(difference);
+    }
+
+    // Conexión WebSocket
+    const ws = new WebSocket(`ws://${location.host}`);
+
+    // Manejar los mensajes del servidor
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      if (data.type === 'update') {
-        timerDisplay.textContent = data.timer;
+      if (data.type === 'start') {
+        startTimer();
+      } else if (data.type === 'stop') {
+        stopTimer();
+      } else if (data.type === 'reset') {
+        resetTimer();
       }
     };
 
-    // Manejar clics de botones para enviar comandos al servidor
+    // Enviar mensajes al servidor al hacer clic en los botones
     startButton.onclick = () => {
       ws.send(JSON.stringify({ type: 'start' }));
     };
@@ -90,17 +190,14 @@
       ws.send(JSON.stringify({ type: 'reset' }));
     };
 
-    // Manejar errores en la conexión WebSocket
     ws.onerror = (error) => {
-      console.error('WebSocket error:', error);
+      console.error('Error en WebSocket:', error);
     };
 
-    // Mensaje en consola cuando se establece la conexión
     ws.onopen = () => {
       console.log('Conectado al servidor WebSocket');
     };
 
-    // Mensaje en consola si la conexión se cierra
     ws.onclose = () => {
       console.log('Conexión WebSocket cerrada');
     };
