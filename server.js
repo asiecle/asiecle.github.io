@@ -35,7 +35,7 @@ wss.on("connection", (ws) => {
       if (client !== ws) { // No enviar el mensaje al cliente que lo envió
         client.send(message);
       } 
-      }
+      });
     }
   });
 
