@@ -1,3 +1,4 @@
+// server.js
 const express = require("express");
 const http = require("http");
 const WebSocket = require("ws");
@@ -6,33 +7,50 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocket.Server({ server });
 
-let connections = [];
+let currentTime = 0; // Tiempo en centésimas de segundo
+let interval = null;
 
-// Manejo de conexiones WebSocket
 wss.on("connection", (ws) => {
-  connections.push(ws);
-  console.log("Client connected. Total clients:", connections.length);
+  console.log("Cliente conectado");
 
-  // Escuchar mensajes del cliente
   ws.on("message", (message) => {
-    console.log("Message received:", message);
-
-    // Reenviar el mensaje a todos los clientes excepto al emisor
-    connections.forEach((client) => {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(message);
+    const data = JSON.parse(message);
+    if (data.action === "start") {
+      if (!interval) {
+        interval = setInterval(() => {
+          currentTime++;
+          broadcastTime();
+        }, 10); // Actualiza cada 10 ms (centesimas)
       }
-    });
+    } else if (data.action === "pause") {
+      clearInterval(interval);
+      interval = null;
+    } else if (data.action === "reset") {
+      clearInterval(interval);
+      interval = null;
+      currentTime = 0;
+      broadcastTime();
+    }
   });
 
-  // Eliminar la conexión cerrada
   ws.on("close", () => {
-    connections = connections.filter((client) => client !== ws);
-    console.log("Client disconnected. Total clients:", connections.length);
+    console.log("Cliente desconectado");
   });
 });
 
+function broadcastTime() {
+  const timeMessage = JSON.stringify({ type: "time", time: currentTime });
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(timeMessage);
+    }
+  });
+}
+
+app.use(express.static("public")); // Sirve archivos estáticos de la carpeta "public"
+
+// Inicia el servidor
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Servidor funcionando en http://localhost:${PORT}`);
 });
