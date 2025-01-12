@@ -76,7 +76,7 @@
   </style>
 </head>
 <body>
-  <table>
+  <table id="timerTable">
     <!-- Fila superior -->
     <tr class="top-row">
       <td colspan="2">Aqui va el tipo de prueba</td>
@@ -102,6 +102,8 @@
   <script>
     const timeDisplay = document.getElementById("time");
     const socket = new WebSocket(`wss://${location.host}`);
+    const timerTable = document.getElementById("timerTable");
+    
     setInterval(MantenerDespierto, 40000);
     
     socket.addEventListener("message", (event) => {
@@ -114,6 +116,16 @@
 
         timeDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(centiseconds).padStart(2, '0')}`;
       }
+
+      // Mostrar u ocultar la tabla según el mensaje
+      if (data.action === "toggleVisibility") {
+        if (data.visible) {
+          timerTable.style.display = "table";
+        } else {
+          timerTable.style.display = "none";
+        }
+      }
+      
     });
     function MantenerDespierto() {
       console.log("La función se ejecutó a las " + new Date().toLocaleTimeString());
