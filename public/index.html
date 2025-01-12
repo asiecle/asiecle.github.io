@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cronómetro</title>
   <style>
-    /* Configuración del cuerpo */
+    /* Configuración general del cuerpo */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -15,25 +15,82 @@
       justify-content: center;
       align-items: center;
       background-color: transparent;
-      color: white; /* Asegúrate de que el cronómetro sea visible en fondos oscuros */
+      color: white;
       overflow: hidden;
     }
 
-    /* Fondo transparente */
-    html, body {
-      background: rgba(0, 0, 0, 0); /* Transparente */
+    /* Configuración de la tabla */
+    table {
+      border-collapse: collapse;
+      width: 80%;
+    }
+
+    /* Fila superior */
+    .top-row {
+      background-color: white;
+      color: black;
+      text-align: center;
+    }
+
+    /* Estilo de las celdas */
+    td {
+      padding: 10px;
+      vertical-align: middle;
+    }
+
+    /* Logo (celda izquierda) */
+    .logo-cell {
+      background-color: #00aaff; /* Azul claro */
+      text-align: center;
+    }
+
+    .logo-cell img {
+      width: 50px; /* Ajusta el tamaño del logo */
+    }
+
+    /* Cronómetro (celda derecha) */
+    .timer-cell {
+      background-color: #90EE90; /* Verde claro */
+      text-align: center;
+    }
+
+    /* Fila inferior */
+    .bottom-row {
+      background-color: #228B22; /* Verde oscuro */
+      height: 10px; /* Altura mínima */
     }
 
     /* Estilo del cronómetro */
     #time {
       font-size: 4em;
       font-weight: bold;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Para mejor visibilidad */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Mejora la visibilidad */
     }
   </style>
 </head>
 <body>
-  <div id="time">00:00.00</div>
+  <table>
+    <!-- Fila superior -->
+    <tr class="top-row">
+      <td colspan="2">Aqui va el tipo de prueba</td>
+    </tr>
+
+    <!-- Fila del logo y cronómetro -->
+    <tr>
+      <td class="logo-cell">
+        <!-- Inserta el logo aquí -->
+        <img src="images/logo.png" alt="Logo">
+      </td>
+      <td class="timer-cell">
+        <div id="time">00:00.00</div>
+      </td>
+    </tr>
+
+    <!-- Fila inferior -->
+    <tr class="bottom-row">
+      <td colspan="2"></td>
+    </tr>
+  </table>
 
   <script>
     const timeDisplay = document.getElementById("time");
@@ -58,4 +115,3 @@
   </script>
 </body>
 </html>
-
