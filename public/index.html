@@ -7,30 +7,69 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      position: relative;
+      background-color: #f0f0f0;
     }
-    #timer {
+
+    /* Estilos para el overlay */
+    #timer-overlay {
+      position: fixed; /* Fija el cronómetro en la pantalla */
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
+      color: white;
       font-size: 48px;
-      margin: 20px 0;
+      text-align: center;
+      padding: 10px 0;
+      z-index: 1000; /* Asegura que se muestra encima de otros elementos */
+    }
+
+    /* Estilo de los botones */
+    #controls {
+      text-align: center;
+      margin-top: 100px; /* Asegura que no se solapen con el overlay */
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <h1>Cronómetro WebSocket</h1>
-  <div id="timer">0</div>
-  <button id="start">Start</button>
-  <button id="stop">Stop</button>
-  <button id="reset">Reset</button>
+  <!-- Overlay con el cronómetro -->
+  <div id="timer-overlay">0</div>
+
+  <!-- Controles -->
+  <div id="controls">
+    <button id="start">Iniciar</button>
+    <button id="stop">Detener</button>
+    <button id="reset">Reiniciar</button>
+  </div>
 
   <script>
-    const timerDisplay = document.getElementById('timer');
+    // Selección de elementos
+    const timerDisplay = document.getElementById('timer-overlay');
     const startButton = document.getElementById('start');
     const stopButton = document.getElementById('stop');
     const resetButton = document.getElementById('reset');
 
+    // Configurar la conexión WebSocket
     const ws = new WebSocket(`wss://${location.host}`);
 
+    // Manejar mensajes recibidos del servidor
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.type === 'update') {
@@ -38,9 +77,33 @@
       }
     };
 
-    startButton.onclick = () => ws.send(JSON.stringify({ type: 'start' }));
-    stopButton.onclick = () => ws.send(JSON.stringify({ type: 'stop' }));
-    resetButton.onclick = () => ws.send(JSON.stringify({ type: 'reset' }));
+    // Manejar clics de botones para enviar comandos al servidor
+    startButton.onclick = () => {
+      ws.send(JSON.stringify({ type: 'start' }));
+    };
+
+    stopButton.onclick = () => {
+      ws.send(JSON.stringify({ type: 'stop' }));
+    };
+
+    resetButton.onclick = () => {
+      ws.send(JSON.stringify({ type: 'reset' }));
+    };
+
+    // Manejar errores en la conexión WebSocket
+    ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
+
+    // Mensaje en consola cuando se establece la conexión
+    ws.onopen = () => {
+      console.log('Conectado al servidor WebSocket');
+    };
+
+    // Mensaje en consola si la conexión se cierra
+    ws.onclose = () => {
+      console.log('Conexión WebSocket cerrada');
+    };
   </script>
 </body>
 </html>
