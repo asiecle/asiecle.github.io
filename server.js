@@ -31,6 +31,7 @@ wss.on("connection", (ws) => {
       currentTime = 0;
       broadcastTime();
     } else if (data.action === "toggleVisibility") {
+      const textoMessage = JSON.stringify({ type: "checkboxState", checked: isChecked});
       wss.clients.forEach((client) => {
       if (client.readyState === WebSocket.OPEN) {
       client.send(message);
