@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cronómetro sobre Video</title>
+  <title>Cronómetro Transparente</title>
   <style>
     body, html {
       margin: 0;
@@ -17,17 +17,6 @@
       align-items: center;
     }
 
-    /* Estilo para el video de fondo */
-    #background-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Hace que el video cubra toda la pantalla */
-      z-index: -1; /* Asegura que el video quede detrás del cronómetro */
-    }
-
     /* Estilo de la tabla que contiene el logo y el cronómetro */
     #timer-container {
       position: fixed;
@@ -39,7 +28,7 @@
       font-size: 36px; /* Tamaño del cronómetro */
       padding: 5px 20px;
       border-radius: 10px;
-      z-index: 1000; /* Asegura que se muestre encima del video */
+      z-index: 1000; /* Asegura que se muestre encima del contenido */
     }
 
     /* Estilos para la tabla */
@@ -62,7 +51,7 @@
     /* Estilo de los botones */
     #controls {
       position: absolute;
-      top: 80px; /* Ajusta la distancia de los controles del video */
+      top: 80px; /* Ajusta la distancia de los controles */
       text-align: center;
     }
 
@@ -83,17 +72,12 @@
   </style>
 </head>
 <body>
-  <!-- Video de fondo -->
-  <video id="background-video" autoplay muted loop>
-    <source src="tu_video.mp4" type="video/mp4">
-    Tu navegador no soporta el video.
-  </video>
 
-  <!-- Tabla con el logo y el cronómetro -->
+  <!-- Contenedor con el logo y el cronómetro -->
   <div id="timer-container">
     <table>
       <tr>
-        <td><img id="logo" src="images/logo.png" alt="Logo"></td>
+        <td><img id="logo" src="tu_logo.png" alt="Logo"></td>
         <td id="timer-overlay">00:00:00</td>
       </tr>
     </table>
