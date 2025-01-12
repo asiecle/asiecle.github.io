@@ -17,7 +17,7 @@
   <button id="reset">Reiniciar</button>
 
   <script>
-    const socket = new WebSocket(`wss://${window.location.host}`);
+    const socket = new WebSocket(`wss://${location.host}`);
 
     document.getElementById("start").addEventListener("click", () => {
       socket.send(JSON.stringify({ action: "start" }));
