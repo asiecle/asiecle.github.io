@@ -28,6 +28,7 @@
     const socket = new WebSocket(`wss://${location.host}`);
 
     toggleVisibilitySwitch.checked = true;
+    
     // Enviar el estado del switch al servidor
     toggleVisibilitySwitch.addEventListener('change', () => {
       const message = {
