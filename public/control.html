@@ -17,7 +17,14 @@
   <label for="toggleVisibility">Mostrar/Ocultar Cronómetro:</label>
   <input type="checkbox" id="toggleVisibility" />
 
-  <br>
+  <br><br>
+
+  <!-- Campo para escribir el tipo de prueba -->
+  <label for="testType">Tipo de prueba:</label>
+  <input type="text" id="testType" placeholder="Escribe el tipo de prueba aquí" />
+  <button id="sendTestType">Enviar</button>
+
+  <br><br>
 
   <button id="start">Iniciar</button>
   <button id="pause">Pausar</button>
@@ -36,6 +43,18 @@
         visible: toggleVisibilitySwitch.checked
       };
       socket.send(JSON.stringify(message));
+    });
+    
+    // Enviar el tipo de prueba al servidor
+    sendTestTypeButton.addEventListener('click', () => {
+      const testType = testTypeInput.value.trim();
+      if (testType) {
+        const message = {
+          action: 'updateTestType',
+          testType
+        };
+        socket.send(JSON.stringify(message));
+      }
     });
     
     document.getElementById("start").addEventListener("click", () => {
