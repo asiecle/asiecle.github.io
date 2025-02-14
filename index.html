@@ -100,7 +100,7 @@
         <label>Longitud (metros):
             <div class="input-container">
                 <input type="text" id="marca1" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marca1', 'resultado1', datosLongitud)">
-                <button class="clear-btn" onclick="document.getElementById('marca1').value = ''; document.getElementById('resultado1').innerText = '';">×</button>
+                <button class="clear-btn" onclick="clearInput('marca1', 'resultado1')">×</button>
             </div>
         <p id="resultado1" class="resultado"></p>
 
@@ -134,7 +134,15 @@
                 })
                 .catch(error => alert(error.message));
         }
-
+        
+        function clearInput(inputId, resultadoId) {
+            const input = document.getElementById(inputId);
+            const inputResultado = document.getElementById(resultadoId);
+            inputResultado.innerText = '' // Oculta el resultado de puntos
+            input.value = '';  // Borra el contenido
+            input.focus();      // Coloca el cursor en el input
+        }
+        
         function convertirFormato(valor) {
             if (valor.includes(":")) {
                 let partes = valor.split(":");
