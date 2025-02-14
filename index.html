@@ -73,13 +73,13 @@
 
         <h3>Introduce las marcas:</h3>
         
-        <label>1000m (mm:ss.cc): <input type="text" id="marca3" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onblur="mostrarPuntos('marca3', 'resultado3', datos1000)"></label>
+        <label>1000m (mm:ss.cc): <input type="text" id="marca3" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onblur="mostrarPuntos('marca3', 'resultado3', datos1000)" onfocus="this.select"></label>
         <p id="resultado3" class="resultado"></p>
 
-        <label>Longitud (metros): <input type="text" id="marca1" placeholder="Ej: 3,45" onblur="mostrarPuntos('marca1', 'resultado1', datosLongitud)"></label>
+        <label>Longitud (metros): <input type="text" id="marca1" placeholder="Ej: 3,45" onblur="mostrarPuntos('marca1', 'resultado1', datosLongitud)" onfocus="this.select"></label>
         <p id="resultado1" class="resultado"></p>
 
-        <label>Jabalina (metros): <input type="text" id="marca2" placeholder="Ej: 10,45" onblur="mostrarPuntos('marca2', 'resultado2', datosJabalina)"></label>
+        <label>Jabalina (metros): <input type="text" id="marca2" placeholder="Ej: 10,45" onblur="mostrarPuntos('marca2', 'resultado2', datosJabalina)" onfocus="this.select"></label>
         <p id="resultado2" class="resultado"></p>
 
         <button onclick="calcularPuntos()">Calcular Total</button>
