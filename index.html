@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -68,17 +68,19 @@
 </head>
 <body>
     <div class="container">
-        <h2>Calculadora de Puntos - Triatlón</h2>
+        <h2>Calculadora de Puntos </h2>
+        <h2>Triatlón B Femenino </h2>
 
         <h3>Introduce las marcas:</h3>
-        <label>Peso (metros): <input type="text" id="marca1" placeholder="Ej: 8,75" onblur="mostrarPuntos('marca1', 'resultado1', datosPeso)"></label>
-        <p id="resultado1" class="resultado"></p>
-
-        <label>80m (metros): <input type="text" id="marca2" placeholder="Ej: 10,45" onblur="mostrarPuntos('marca2', 'resultado2', datos80)"></label>
-        <p id="resultado2" class="resultado"></p>
-
+        
         <label>1000m (mm:ss.cc): <input type="text" id="marca3" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onblur="mostrarPuntos('marca3', 'resultado3', datos1000)"></label>
         <p id="resultado3" class="resultado"></p>
+
+        <label>Longitud (metros): <input type="text" id="marca1" placeholder="Ej: 3,45" onblur="mostrarPuntos('marca1', 'resultado1', datosLongitud)"></label>
+        <p id="resultado1" class="resultado"></p>
+
+        <label>Jabalina (metros): <input type="text" id="marca2" placeholder="Ej: 10,45" onblur="mostrarPuntos('marca2', 'resultado2', datosJabalina)"></label>
+        <p id="resultado2" class="resultado"></p>
 
         <button onclick="calcularPuntos()">Calcular Total</button>
         
@@ -87,8 +89,8 @@
     </div>
 
     <script>
-        let datosPeso = [];
-        let datos80 = [];
+        let datosLongitud = [];
+        let datosJabalina = [];
         let datos1000 = [];
 
         function cargarCSV(url, callback) {
@@ -119,8 +121,8 @@
             }
         }
 
-        cargarCSV("PesoFem.csv", datos => datosPeso = datos);
-        cargarCSV("80Fem.csv", datos => datos80 = datos);
+        cargarCSV("LongitudFem.csv", datos => datosLongitud = datos);
+        cargarCSV("JabalinaFem.csv", datos => datosJabalina = datos);
         cargarCSV("1000Fem.csv", datos => datos1000 = datos);
 
         function buscarPuntos(marca, datos) {
@@ -156,7 +158,7 @@
         }
 
         function calcularPuntos() {
-            if (datosPeso.length === 0 || datos80.length === 0 || datos1000.length === 0) {
+            if (datosLongitud.length === 0 || datosJabalina.length === 0 || datos1000.length === 0) {
                 alert("Los archivos CSV aún no han sido cargados.");
                 return;
             }
@@ -170,8 +172,8 @@
                 return;
             }
 
-            let puntos1 = buscarPuntos(marca1, datosPeso);
-            let puntos2 = buscarPuntos(marca2, datos80);
+            let puntos1 = buscarPuntos(marca1, datosLongitud);
+            let puntos2 = buscarPuntos(marca2, datosJabalina);
             let puntos3 = buscarPuntos(marca3, datos1000);
 
             if (puntos1 === null || puntos2 === null || puntos3 === null) {
