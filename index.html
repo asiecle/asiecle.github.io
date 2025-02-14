@@ -9,16 +9,18 @@
     <h2>Calculadora de Puntos - Triatlón</h2>
 
     <h3>Introduce las marcas:</h3>
-    <label>Peso (metros): <input type="text" id="marca1" placeholder="Ej: 8,75"></label><br>
-    <label>80m (metros): <input type="text" id="marca2" placeholder="Ej: 10,45"></label><br>
-    <label>1000m (mm:ss.cc): <input type="text" id="marca3" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc"></label><br>
-
-    <button onclick="calcularPuntos()">Calcular</button>
-
-    <h3>Resultados:</h3>
+    <label>Peso (metros): <input type="text" id="marca1" placeholder="Ej: 8,75" onblur="mostrarPuntos('marca1', 'resultado1', datosPeso)"></label>
     <p id="resultado1"></p>
+
+    <label>80m (metros): <input type="text" id="marca2" placeholder="Ej: 10,45" onblur="mostrarPuntos('marca2', 'resultado2', datos80)"></label>
     <p id="resultado2"></p>
+
+    <label>1000m (mm:ss.cc): <input type="text" id="marca3" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onblur="mostrarPuntos('marca3', 'resultado3', datos1000)"></label>
     <p id="resultado3"></p>
+
+    <button onclick="calcularPuntos()">Calcular Total</button>
+    
+    <h3>Resultado Total:</h3>
     <p id="resultadoTotal"></p>
 
     <script>
@@ -64,34 +66,4 @@
             let marcaMasCercana = datos.reduce((a, b) => 
                 Math.abs(b[0] - marcaNum) < Math.abs(a[0] - marcaNum) ? b : a
             );
-            return marcaMasCercana[1]; // Devolver puntos de la marca más cercana
-        }
-
-        function calcularPuntos() {
-            if (datosPeso.length === 0 || datos80.length === 0 || datos1000.length === 0) {
-                alert("Los archivos CSV aún no han sido cargados.");
-                return;
-            }
-
-            let marca1 = document.getElementById("marca1").value.trim();
-            let marca2 = document.getElementById("marca2").value.trim();
-            let marca3 = document.getElementById("marca3").value.trim();
-
-            if (!marca1 || !marca2 || !marca3) {
-                alert("Introduce las tres marcas.");
-                return;
-            }
-
-            let puntos1 = buscarPuntos(marca1, datosPeso);
-            let puntos2 = buscarPuntos(marca2, datos80);
-            let puntos3 = buscarPuntos(marca3, datos1000);
-            let puntosTotales = puntos1 + puntos2 + puntos3;
-
-            document.getElementById("resultado1").innerText = `Puntos Peso: ${puntos1}`;
-            document.getElementById("resultado2").innerText = `Puntos 80m: ${puntos2}`;
-            document.getElementById("resultado3").innerText = `Puntos 1000m: ${puntos3}`;
-            document.getElementById("resultadoTotal").innerText = `Puntos Totales: ${puntosTotales}`;
-        }
-    </script>
-</body>
-</html>
+            return marca
