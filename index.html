@@ -5,35 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Puntos - Triatlón</title>
     <style>
-        input {
-            font-size: 16px;
+        body {
+            font-family: Arial, sans-serif;
             text-align: center;
+            background: url('https://source.unsplash.com/1600x900/?running,track') no-repeat center center/cover;
+            color: #fff;
+            margin: 0;
+            padding: 0;
         }
-        #marca1, #marca2 {
-            width: 80px; /* Ajustado para valores como 8,75 o 10,45 */
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+        }
+        h2, h3 {
+            color: #ffcc00;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-size: 18px;
+        }
+        input {
+            font-size: 18px;
+            text-align: center;
+            padding: 5px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: none;
+            width: 80px;
         }
         #marca3 {
-            width: 100px; /* Ajustado para valores como 03:15.25 */
+            width: 100px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #ffcc00;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #000;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #ffaa00;
+        }
+        p {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .resultado {
+            color: #ffcc00;
         }
     </style>
 </head>
 <body>
-    <h2>Calculadora de Puntos - Triatlón</h2>
+    <div class="container">
+        <h2>Calculadora de Puntos - Triatlón</h2>
 
-    <h3>Introduce las marcas:</h3>
-    <label>Peso (metros): <input type="text" id="marca1" placeholder="Ej: 8,75" onblur="mostrarPuntos('marca1', 'resultado1', datosPeso)"></label>
-    <p id="resultado1"></p>
+        <h3>Introduce las marcas:</h3>
+        <label>Peso (metros): <input type="text" id="marca1" placeholder="Ej: 8,75" onblur="mostrarPuntos('marca1', 'resultado1', datosPeso)"></label>
+        <p id="resultado1" class="resultado"></p>
 
-    <label>80m (metros): <input type="text" id="marca2" placeholder="Ej: 10,45" onblur="mostrarPuntos('marca2', 'resultado2', datos80)"></label>
-    <p id="resultado2"></p>
+        <label>80m (metros): <input type="text" id="marca2" placeholder="Ej: 10,45" onblur="mostrarPuntos('marca2', 'resultado2', datos80)"></label>
+        <p id="resultado2" class="resultado"></p>
 
-    <label>1000m (mm:ss.cc): <input type="text" id="marca3" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onblur="mostrarPuntos('marca3', 'resultado3', datos1000)"></label>
-    <p id="resultado3"></p>
+        <label>1000m (mm:ss.cc): <input type="text" id="marca3" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onblur="mostrarPuntos('marca3', 'resultado3', datos1000)"></label>
+        <p id="resultado3" class="resultado"></p>
 
-    <button onclick="calcularPuntos()">Calcular Total</button>
-    
-    <h3>Resultado Total:</h3>
-    <p id="resultadoTotal"></p>
+        <button onclick="calcularPuntos()">Calcular Total</button>
+        
+        <h3>Resultado Total:</h3>
+        <p id="resultadoTotal" class="resultado"></p>
+    </div>
 
     <script>
         let datosPeso = [];
@@ -47,31 +98,27 @@
                     return response.text();
                 })
                 .then(texto => {
-                    let datos = texto.split("\n").map(fila => fila.split(";")).slice(1); // Omitir encabezado
+                    let datos = texto.split("\n").map(fila => fila.split(";")).slice(1);
                     datos = datos.map(fila => [
-                        convertirFormato(fila[0]), // Convertir valores al formato correcto
-                        parseInt(fila[1]) // Puntos como número entero
+                        convertirFormato(fila[0]),
+                        parseInt(fila[1])
                     ]);
                     callback(datos);
                 })
                 .catch(error => alert(error.message));
         }
 
-        // Convertir formato según tipo de dato
         function convertirFormato(valor) {
             if (valor.includes(":")) {
-                // Convertir mm:ss.cc a segundos con decimales
                 let partes = valor.split(":");
                 let minutos = parseInt(partes[0]);
                 let segundos = parseFloat(partes[1].replace(",", "."));
                 return minutos * 60 + segundos;
             } else {
-                // Convertir metros con coma a número con punto
                 return parseFloat(valor.replace(",", "."));
             }
         }
 
-        // Cargar los archivos CSV automáticamente al iniciar
         cargarCSV("PesoFem.csv", datos => datosPeso = datos);
         cargarCSV("80Fem.csv", datos => datos80 = datos);
         cargarCSV("1000Fem.csv", datos => datos1000 = datos);
@@ -92,7 +139,7 @@
                 return null;
             }
 
-            return marcaMasCercana[1]; // Devolver puntos de la marca más cercana
+            return marcaMasCercana[1]; 
         }
 
         function mostrarPuntos(inputId, resultadoId, datos) {
