@@ -30,7 +30,10 @@
 
         function cargarCSV(url, callback) {
             fetch(url)
-                .then(response => response.text())
+                .then(response => {
+                    if (!response.ok) throw new Error(`No se pudo cargar ${url}`);
+                    return response.text();
+                })
                 .then(texto => {
                     let datos = texto.split("\n").map(fila => fila.split(";")).slice(1); // Omitir encabezado
                     datos = datos.map(fila => [
@@ -39,7 +42,7 @@
                     ]);
                     callback(datos);
                 })
-                .catch(error => console.error(`Error cargando ${url}:`, error));
+                .catch(error => alert(error.message));
         }
 
         // Convertir formato según tipo de dato
@@ -62,8 +65,64 @@
         cargarCSV("1000Fem.csv", datos => datos1000 = datos);
 
         function buscarPuntos(marca, datos) {
+            if (datos.length === 0) {
+                alert("Los datos aún no han sido cargados. Inténtalo de nuevo.");
+                return null;
+            }
+
             let marcaNum = convertirFormato(marca);
             let marcaMasCercana = datos.reduce((a, b) => 
                 Math.abs(b[0] - marcaNum) < Math.abs(a[0] - marcaNum) ? b : a
             );
-            return marca
+
+            if (!marcaMasCercana) {
+                alert("La marca introducida no se encuentra en el archivo.");
+                return null;
+            }
+
+            return marcaMasCercana[1]; // Devolver puntos de la marca más cercana
+        }
+
+        function mostrarPuntos(inputId, resultadoId, datos) {
+            let marca = document.getElementById(inputId).value.trim();
+            if (!marca) {
+                document.getElementById(resultadoId).innerText = "";
+                return;
+            }
+
+            let puntos = buscarPuntos(marca, datos);
+            if (puntos !== null) {
+                document.getElementById(resultadoId).innerText = `Puntos: ${puntos}`;
+            }
+        }
+
+        function calcularPuntos() {
+            if (datosPeso.length === 0 || datos80.length === 0 || datos1000.length === 0) {
+                alert("Los archivos CSV aún no han sido cargados.");
+                return;
+            }
+
+            let marca1 = document.getElementById("marca1").value.trim();
+            let marca2 = document.getElementById("marca2").value.trim();
+            let marca3 = document.getElementById("marca3").value.trim();
+
+            if (!marca1 || !marca2 || !marca3) {
+                alert("Introduce las tres marcas.");
+                return;
+            }
+
+            let puntos1 = buscarPuntos(marca1, datosPeso);
+            let puntos2 = buscarPuntos(marca2, datos80);
+            let puntos3 = buscarPuntos(marca3, datos1000);
+
+            if (puntos1 === null || puntos2 === null || puntos3 === null) {
+                return;
+            }
+
+            let puntosTotales = puntos1 + puntos2 + puntos3;
+
+            document.getElementById("resultadoTotal").innerText = `Puntos Totales: ${puntosTotales}`;
+        }
+    </script>
+</body>
+</html>
