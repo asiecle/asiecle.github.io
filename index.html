@@ -199,7 +199,7 @@ input:checked + .slider:before {
 
     <div class="container-1" id="A">
         
-        <h2>Triatlón <span class="destacada">A</span> Sub14 Femenino </h2>
+        <h2>Triatlón <span class="destacada">A</span> Sub14 <span id="generoA">Femenino</span></h2>
 
         <h3>Introduce las marcas:</h3>
         
@@ -411,7 +411,6 @@ input:checked + .slider:before {
         let datosAltura = [];
         let datosDisco = [];
         let datosMarcha = [];
-        let genero = "Femenino";
      
         function cargarCSV(url, callback) {
             fetch(url)
@@ -529,8 +528,7 @@ input:checked + .slider:before {
             document.getElementById("D").style.display = check.checked ? "none" : "block";
             document.getElementById("E").style.display = check.checked ? "none" : "block";
             
-            genero= check.checked ? "Masculino" : "Femenino";
-            
+            document.getElementById("GeneroA").content = check.checked ? "Masculino" : "Femenino";
  
         }
     </script>
