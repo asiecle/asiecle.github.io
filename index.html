@@ -41,7 +41,7 @@
             box-shadow: 0px 1cqb 10px 10px rgba(255, 255, 255, 0.3);
         }
         h2 {
-            color: lim;
+            color: white;
             padding: 0px; 
             margin:0px auto;
         }
@@ -58,6 +58,16 @@
             font-style: italic;
             line-height: 5px;
             font-size: 10px;
+        }
+        a {
+            color: rgb(184, 127, 127);
+            font-style: italic; 
+        }
+        h5 {
+             
+            font-style: italic;
+            line-height: 1px;
+             
         }
         label {
             display: block;
@@ -281,7 +291,7 @@ input:checked + .slider:before {
                 <input type="text" id="marcaAlturaC" placeholder="Ej: 1,25" onfocus="this.select()" onblur="mostrarPuntos('marcaAlturaC', 'resultadoAlturaC', datosAltura)">
                 <button class="clear-btn" onclick="clearInput('marcaAlturaC', 'resultadoAlturaC', 'resultadoTotalC')">×</button>
             </div>
-        <p id="resultado80vA" class="resultado"></p>
+        <p id="resultadoAlturaC" class="resultado"></p>
         
         <label>Longitud (metros):</label>
         <div class="input-container">
@@ -295,84 +305,95 @@ input:checked + .slider:before {
         <p id="resultadoTotalC" class="resultado"></p>
         <p></p>
         <p> ______________________ </p>
-        <h4>Marca de corte Andalucía (mayo 2024): </h4>
-        <h4>Marca de corte Andalucía (octubre 2024): </h4>
+        <h4>Marca de corte Andalucía (mayo 2024): 932</h4>
+        <h4>Marca de corte Andalucía (octubre 2024): 1031</h4>
     </div>
 
     <!-- TRIATLON D FEMENINO -->
 
-    <div class="container" id="B">
+    <div class="container" id="D">
         
-        <h2>Triatlón <span class="destacada">B</span> Sub14 Femenino </h2>
+        <h2>Triatlón <span class="destacada">D</span> Sub14 Femenino </h2>
 
         <h3>Introduce las marcas:</h3>
         
-        <label>1000m (mm:ss.cc):</label>
+        <label>80m (ss,cc):</label>
             <div class="input-container">
-                <input type="text" id="marca1000" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onfocus="this.select()" onblur="mostrarPuntos('marca1000', 'resultado1000', datos1000)">
-                <button class="clear-btn" onclick="clearInput('marca1000', 'resultado1000')">×</button>
+                <input type="text" id="marca80D" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80D', 'resultado80D', datos80)">
+                <button class="clear-btn" onclick="clearInput('marca80D', 'resultado80D', 'resultadoTotalD')">×</button>
             </div>
-        <p id="resultado1000" class="resultado"></p>
+        <p id="resultado80D" class="resultado"></p>
 
-        <label>Longitud (metros):</label>
+        <label>Peso (metros):</label>
             <div class="input-container">
-                <input type="text" id="marcaLongitud" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marcaLongitud', 'resultadoLongitud', datosLongitud)">
-                <button class="clear-btn" onclick="clearInput('marcaLongitud', 'resultadoLongitud', 'resultadoTotalB')">×</button>
+                <input type="text" id="marcaPesoD" placeholder="Ej: 4,75" onfocus="this.select()" onblur="mostrarPuntos('marcaPesoD', 'resultadoPesoD', datosPeso)">
+                <button class="clear-btn" onclick="clearInput('marcaPesoD', 'resultadoPesoD', 'resultadoTotalD')">×</button>
             </div>
-        <p id="resultadoLongitud" class="resultado"></p>
+        <p id="resultadoPesoD" class="resultado"></p>
 
-        <label>Jabalina (metros):</label>
+
+        <label>Disco (metros):</label>
             <div class="input-container">
-                <input type="text" id="marcaJabalina" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaJabalina', 'resultadoJabalina', datosJabalina)">
-                <button class="clear-btn" onclick="clearInput('marcaJabalina', 'resultadoJabalina')">×</button>
+                <input type="text" id="marcaDiscoD" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaDiscoD', 'resultadoDiscoD', datosDisco)">
+                <button class="clear-btn" onclick="clearInput('marcaDiscoD', 'resultadoDiscoD')">×</button>
             </div>
-        <p id="resultadoJabalina" class="resultado"></p>
+        <p id="resultadoDiscoD" class="resultado"></p>
 
-        <button onclick="calcularPuntos(datos1000, datosLongitud, datosJabalina, 'marca1000', 'marcaLongitud', 'marcaJabalina', 'resultadoTotalB')">Calcular Total</button>
+        <button onclick="calcularPuntos(datos80, datosPeso, datosDisco, 'marca80D', 'marcaPesoD', 'marcaDiscoD', 'resultadoTotalD')">Calcular Total</button>
         
-        <p id="resultadoTotalB" class="resultado"></p>
+        <p id="resultadoTotalD" class="resultado"></p>
         <p></p>
         <p> ______________________ </p>
-        <h4>Marca de corte Andalucía (mayo 2024): 824</h4>
-        <h4>Marca de corte Andalucía (octubre 2024): 812</h4>
+        <h4>Marca de corte Andalucía (mayo 2024): 876</h4>
+        <h4>Marca de corte Andalucía (octubre 2024): 892</h4>
     </div>
 
     <!-- TRIATLON E FEMENINO -->
 
-    <div class="container" id="B">
+    <div class="container" id="E">
         
-        <h2>Triatlón <span class="destacada">B</span> Sub14 Femenino </h2>
+        <h2>Triatlón <span class="destacada">E</span> Sub14 Femenino </h2>
 
         <h3>Introduce las marcas:</h3>
         
-        <label>1000m (mm:ss.cc):</label>
+        <label>2000mm (mm:ss.cc):</label>
             <div class="input-container">
-                <input type="text" id="marca1000" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onfocus="this.select()" onblur="mostrarPuntos('marca1000', 'resultado1000', datos1000)">
-                <button class="clear-btn" onclick="clearInput('marca1000', 'resultado1000')">×</button>
+                <input type="text" id="marcaMarchaE" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onfocus="this.select()" onblur="mostrarPuntos('marcaMarchaE', 'resultadoMarchaE', datosMarcha)">
+                <button class="clear-btn" onclick="clearInput('marcaMarchaE', 'resultadoMarchaE', 'resultadoTotalE')">×</button>
             </div>
-        <p id="resultado1000" class="resultado"></p>
+        <p id="resultadoMarchaE" class="resultado"></p>
 
-        <label>Longitud (metros):</label>
+        <label>80m (ss,cc):</label>
             <div class="input-container">
-                <input type="text" id="marcaLongitud" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marcaLongitud', 'resultadoLongitud', datosLongitud)">
-                <button class="clear-btn" onclick="clearInput('marcaLongitud', 'resultadoLongitud', 'resultadoTotalB')">×</button>
+                <input type="text" id="marca80E" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80E', 'resultado80E', datos80)">
+                <button class="clear-btn" onclick="clearInput('marca80E', 'resultado80E', 'resultadoTotalE')">×</button>
             </div>
-        <p id="resultadoLongitud" class="resultado"></p>
+        <p id="resultado80E" class="resultado"></p>
 
         <label>Jabalina (metros):</label>
             <div class="input-container">
-                <input type="text" id="marcaJabalina" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaJabalina', 'resultadoJabalina', datosJabalina)">
-                <button class="clear-btn" onclick="clearInput('marcaJabalina', 'resultadoJabalina')">×</button>
+                <input type="text" id="marcaJabalinaE" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaJabalinaE', 'resultadoJabalinaE', datosJabalina)">
+                <button class="clear-btn" onclick="clearInput('marcaJabalinaE', 'resultadoJabalinaE')">×</button>
             </div>
-        <p id="resultadoJabalina" class="resultado"></p>
+        <p id="resultadoJabalinaE" class="resultado"></p>
 
-        <button onclick="calcularPuntos(datos1000, datosLongitud, datosJabalina, 'marca1000', 'marcaLongitud', 'marcaJabalina', 'resultadoTotalB')">Calcular Total</button>
+        <button onclick="calcularPuntos(datosMarcha, datos80, datosJabalina, 'marcaMarchaE', 'marca80E', 'marcaJabalinaE', 'resultadoTotalE')">Calcular Total</button>
         
-        <p id="resultadoTotalB" class="resultado"></p>
+        <p id="resultadoTotalE" class="resultado"></p>
         <p></p>
         <p> ______________________ </p>
-        <h4>Marca de corte Andalucía (mayo 2024): 824</h4>
-        <h4>Marca de corte Andalucía (octubre 2024): 812</h4>
+        <h4>Marca de corte Andalucía (mayo 2024): 1071</h4>
+        <h4>Marca de corte Andalucía (octubre 2024): 1150</h4>
+    </div>
+
+    <div class="container-prin">
+        <h3>Otros enlaces del creador:</h3>
+        <h5>Blog de Alejandra Gálvez: <a href="https://www.entrefragmentosdevida.es" target="_blank">Entre Fragmentos de Vida</a></h5>
+        <h5>Canal de Youtube: <a href="https://www.youtube.com/@atletismoenlanube6648" target="_blank">Atletismo en la nube</a></h5>
+        <h5>Instagram equipo de entrenos: <a href="https://www.instagram.com/roberts_project_/" target="_blank">Robert's Project</a></h5>
+        
+        <h4>© 2025 Todos los derechos reservados</h4>
+        
     </div>
 
     <script>
@@ -386,6 +407,8 @@ input:checked + .slider:before {
         let datosJabalina = [];
         let datos1000 = [];
         let datosAltura = [];
+        let datosDisco = [];
+        let datosMarcha = [];
      
         function cargarCSV(url, callback) {
             fetch(url)
@@ -432,6 +455,8 @@ input:checked + .slider:before {
         cargarCSV("JabalinaFem.csv", datos => datosJabalina = datos);
         cargarCSV("1000Fem.csv", datos => datos1000 = datos);
         cargarCSV("AlturaFem.csv", datos => datosAltura = datos);
+        cargarCSV("DiscoFem.csv", datos => datosDisco = datos);
+        cargarCSV("MarchaFem.csv", datos => datosMarcha = datos);
 
         function buscarPuntos(marca, datos) {
             if (datos.length === 0) {
@@ -497,9 +522,13 @@ input:checked + .slider:before {
             const check = document.getElementById("toggleSwitch");
             document.getElementById("A").style.display = check.checked ? "none" : "block";
             document.getElementById("B").style.display = check.checked ? "none" : "block";
+            document.getElementById("C").style.display = check.checked ? "none" : "block";
+            document.getElementById("D").style.display = check.checked ? "none" : "block";
+            document.getElementById("E").style.display = check.checked ? "none" : "block";
             
-            document.getElementById("A").style.display = check.checked ? "block" : "none";
-            document.getElementById("B").style.display = check.checked ? "block" : "none";
+            
+            
+ 
         }
     </script>
 </body>
