@@ -17,21 +17,40 @@
             background: rgba(0, 0, 0, 0.7);
             width: 90%;
             max-width: 500px;
-            margin: 50px auto;
+            margin: 10px auto;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+            box-shadow: 0px 10px 10px 10px rgba(255, 255, 255, 0.3);
+        }
+        .container-1 {
+            background: rgba(0, 0, 0, 0.7);
+            width: 90%;
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 10px 10px 10px rgba(255, 255, 255, 0.3);
         }
         .container-prin {
             background: rgba(0, 0, 0, 0.7);
             width: 90%;
             max-width: 500px;
-            margin: 10px;
-            padding: 10px;
+            margin:35px auto;
+            padding: 20px; 
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+            box-shadow: 0px 1cqb 10px 10px rgba(255, 255, 255, 0.3);
         }
-        h2, h3 {
+        h2 {
+            color: lim;
+            padding: 0px; 
+            margin:0px auto;
+        }
+        .h2-prin{
+            font-size: 26px;
+            color: lime;
+        }
+        h3 {
+             
             color: #ffcc00;
         }
         h4 {
@@ -104,13 +123,69 @@
             color: lime;  /* Cambia el color de la "A" */
             font-weight: bold; /* Pone la "A" en negrita */
         }
+
+
+        /* Estilo del interruptor */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #db61b4;
+    transition: 0.4s;
+    border-radius: 25px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3.5px;
+    background-color: rgb(255, 255, 255);
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #ad0f0f; /* Color cuando está activado */
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
     </style>
 </head>
 <body>
     <div class="container-prin">
-        <h2>CALCULADORA DE PUNTOS</h2>
+        <h2 class="h2-prin">CALCULADORA DE PUNTOS</h2>
+        <span>Femenino</span>
+        <label class="switch">
+            <input type="checkbox" id="toggleSwitch" onchange="toggleDivs()">
+            <span class="slider"></span>
+        </label>
+        <span>Masculino</span>
     </div>
-    <div class="container">
+
+    <!-- TRIATLON A FEMENINO -->
+
+    <div class="container-1" id="A">
         
         <h2>Triatlón <span class="destacada">A</span> Sub14 Femenino </h2>
 
@@ -120,26 +195,26 @@
 
         <label>80m (ss,cc):</label>
             <div class="input-container">
-                <input type="text" id="marca80" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80', 'resultado80', datos80)">
-                <button class="clear-btn" onclick="clearInput('marca80', 'resultado80')">×</button>
+                <input type="text" id="marca80A" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80A', 'resultado80A', datos80)">
+                <button class="clear-btn" onclick="clearInput('marca80A', 'resultado80A', 'resultadoTotalA')">×</button>
             </div>
-        <p id="resultado80" class="resultado"></p>
+        <p id="resultado80A" class="resultado"></p>
 
         <label>80mv (ss,cc):</label>
             <div class="input-container">
-                <input type="text" id="marca80v" placeholder="Ej: 12,75" onfocus="this.select()" onblur="mostrarPuntos('marca80v', 'resultado80v', datos80v)">
-                <button class="clear-btn" onclick="clearInput('marca80v', 'resultado80v')">×</button>
+                <input type="text" id="marca80vA" placeholder="Ej: 12,75" onfocus="this.select()" onblur="mostrarPuntos('marca80vA', 'resultado80vA', datos80v)">
+                <button class="clear-btn" onclick="clearInput('marca80vA', 'resultado80vA', 'resultadoTotalA')">×</button>
             </div>
-        <p id="resultado80v" class="resultado"></p>
+        <p id="resultado80vA" class="resultado"></p>
         
         <label>Peso (metros):</label>
             <div class="input-container">
-                <input type="text" id="marcaPeso" placeholder="Ej: 4,75" onfocus="this.select()" onblur="mostrarPuntos('marcaPeso', 'resultadoPeso', datosPeso)">
-                <button class="clear-btn" onclick="clearInput('marcaPeso', 'resultadoPeso', 'resultadoTotalA')">×</button>
+                <input type="text" id="marcaPesoA" placeholder="Ej: 4,75" onfocus="this.select()" onblur="mostrarPuntos('marcaPesoA', 'resultadoPesoA', datosPeso)">
+                <button class="clear-btn" onclick="clearInput('marcaPesoA', 'resultadoPesoA', 'resultadoTotalA')">×</button>
             </div>
-        <p id="resultadoPeso" class="resultado"></p>
+        <p id="resultadoPesoA" class="resultado"></p>
 
-        <button onclick="calcularPuntos(datos80, datos80v, datosPeso, 'marca80', 'marca80v', 'marcaPeso', 'resultadoTotalA')">Calcular Total</button>
+        <button onclick="calcularPuntos(datos80, datos80v, datosPeso, 'marca80A', 'marca80vA', 'marcaPesoA', 'resultadoTotalA')">Calcular Total</button>
         
         <p id="resultadoTotalA" class="resultado"></p>
         <p></p>
@@ -148,8 +223,124 @@
         <h4>Marca de corte Andalucía (octubre 2024): 1042</h4>
     </div>
     
-    <div class="container">
-        <h2>CALCULADORA DE PUNTOS</h2>
+    <!-- TRIATLON B FEMENINO -->
+
+    <div class="container" id="B">
+        
+        <h2>Triatlón <span class="destacada">B</span> Sub14 Femenino </h2>
+
+        <h3>Introduce las marcas:</h3>
+        
+        <label>1000m (mm:ss.cc):</label>
+            <div class="input-container">
+                <input type="text" id="marca1000B" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onfocus="this.select()" onblur="mostrarPuntos('marca1000B', 'resultado1000B', datos1000)">
+                <button class="clear-btn" onclick="clearInput('marca1000B', 'resultado1000B', 'resultadoTotalB')">×</button>
+            </div>
+        <p id="resultado1000B" class="resultado"></p>
+
+        <label>Longitud (metros):</label>
+            <div class="input-container">
+                <input type="text" id="marcaLongitudB" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marcaLongitudB', 'resultadoLongitudB', datosLongitud)">
+                <button class="clear-btn" onclick="clearInput('marcaLongitudB', 'resultadoLongitudB', 'resultadoTotalB')">×</button>
+            </div>
+        <p id="resultadoLongitudB" class="resultado"></p>
+
+        <label>Jabalina (metros):</label>
+            <div class="input-container">
+                <input type="text" id="marcaJabalinaB" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaJabalinaB', 'resultadoJabalinaB', datosJabalina)">
+                <button class="clear-btn" onclick="clearInput('marcaJabalinaB', 'resultadoJabalinaB', 'resultadoTotalB')">×</button>
+            </div>
+        <p id="resultadoJabalina" class="resultado"></p>
+
+        <button onclick="calcularPuntos(datos1000, datosLongitud, datosJabalina, 'marca1000', 'marcaLongitud', 'marcaJabalina', 'resultadoTotalB')">Calcular Total</button>
+        
+        <p id="resultadoTotalB" class="resultado"></p>
+        <p></p>
+        <p> ______________________ </p>
+        <h4>Marca de corte Andalucía (mayo 2024): 824</h4>
+        <h4>Marca de corte Andalucía (octubre 2024): 812</h4>
+    </div>
+
+    <!-- TRIATLON C FEMENINO -->
+
+    <div class="container" id="C">
+        
+        <h2>Triatlón <span class="destacada">C</span> Sub14 Femenino </h2>
+
+        <h3>Introduce las marcas:</h3>
+
+        <label>80m (ss,cc):</label>
+            <div class="input-container">
+                <input type="text" id="marca80C" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80C', 'resultado80C', datos80)">
+                <button class="clear-btn" onclick="clearInput('marca80C', 'resultado80C', 'resultadoTotalC')">×</button>
+            </div>
+        <p id="resultado80C" class="resultado"></p>
+
+        <label>Altura (metros):</label>
+            <div class="input-container">
+                <input type="text" id="marcaAlturaC" placeholder="Ej: 1,25" onfocus="this.select()" onblur="mostrarPuntos('marcaAlturaC', 'resultadoAlturaC', datosAltura)">
+                <button class="clear-btn" onclick="clearInput('marcaAlturaC', 'resultadoAlturaC', 'resultadoTotalC')">×</button>
+            </div>
+        <p id="resultado80vA" class="resultado"></p>
+        
+        <label>Longitud (metros):</label>
+        <div class="input-container">
+            <input type="text" id="marcaLongitudC" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marcaLongitudC', 'resultadoLongitudC', datosLongitud)">
+            <button class="clear-btn" onclick="clearInput('marcaLongitudC', 'resultadoLongitudC', 'resultadoTotalC')">×</button>
+        </div>
+        <p id="resultadoLongitudC" class="resultado"></p>
+
+        <button onclick="calcularPuntos(datos80, datosAltura, datosLongitud, 'marca80C', 'marcaAlturaC', 'marcaLongitudC', 'resultadoTotalC')">Calcular Total</button>
+        
+        <p id="resultadoTotalC" class="resultado"></p>
+        <p></p>
+        <p> ______________________ </p>
+        <h4>Marca de corte Andalucía (mayo 2024): </h4>
+        <h4>Marca de corte Andalucía (octubre 2024): </h4>
+    </div>
+
+    <!-- TRIATLON D FEMENINO -->
+
+    <div class="container" id="B">
+        
+        <h2>Triatlón <span class="destacada">B</span> Sub14 Femenino </h2>
+
+        <h3>Introduce las marcas:</h3>
+        
+        <label>1000m (mm:ss.cc):</label>
+            <div class="input-container">
+                <input type="text" id="marca1000" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onfocus="this.select()" onblur="mostrarPuntos('marca1000', 'resultado1000', datos1000)">
+                <button class="clear-btn" onclick="clearInput('marca1000', 'resultado1000')">×</button>
+            </div>
+        <p id="resultado1000" class="resultado"></p>
+
+        <label>Longitud (metros):</label>
+            <div class="input-container">
+                <input type="text" id="marcaLongitud" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marcaLongitud', 'resultadoLongitud', datosLongitud)">
+                <button class="clear-btn" onclick="clearInput('marcaLongitud', 'resultadoLongitud', 'resultadoTotalB')">×</button>
+            </div>
+        <p id="resultadoLongitud" class="resultado"></p>
+
+        <label>Jabalina (metros):</label>
+            <div class="input-container">
+                <input type="text" id="marcaJabalina" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaJabalina', 'resultadoJabalina', datosJabalina)">
+                <button class="clear-btn" onclick="clearInput('marcaJabalina', 'resultadoJabalina')">×</button>
+            </div>
+        <p id="resultadoJabalina" class="resultado"></p>
+
+        <button onclick="calcularPuntos(datos1000, datosLongitud, datosJabalina, 'marca1000', 'marcaLongitud', 'marcaJabalina', 'resultadoTotalB')">Calcular Total</button>
+        
+        <p id="resultadoTotalB" class="resultado"></p>
+        <p></p>
+        <p> ______________________ </p>
+        <h4>Marca de corte Andalucía (mayo 2024): 824</h4>
+        <h4>Marca de corte Andalucía (octubre 2024): 812</h4>
+    </div>
+
+    <!-- TRIATLON E FEMENINO -->
+
+    <div class="container" id="B">
+        
         <h2>Triatlón <span class="destacada">B</span> Sub14 Femenino </h2>
 
         <h3>Introduce las marcas:</h3>
@@ -185,17 +376,17 @@
     </div>
 
     <script>
-        // Triatlon A
+       
+       // Datos de los CSVs
+
         let datos80 = [];
         let datos80v = [];
         let datosPeso = [];
-        
-        // Triatlon B
         let datosLongitud = [];
         let datosJabalina = [];
         let datos1000 = [];
-        
-
+        let datosAltura = [];
+     
         function cargarCSV(url, callback) {
             fetch(url)
                 .then(response => {
@@ -236,11 +427,11 @@
 
         cargarCSV("80Fem.csv", datos => datos80 = datos);
         cargarCSV("80vFem.csv", datos => datos80v = datos);
-        cargarCSV("PesoFem.csv", datos => datosPeso = datos);
-        
+        cargarCSV("PesoFem.csv", datos => datosPeso = datos); 
         cargarCSV("LongitudFem.csv", datos => datosLongitud = datos);
         cargarCSV("JabalinaFem.csv", datos => datosJabalina = datos);
         cargarCSV("1000Fem.csv", datos => datos1000 = datos);
+        cargarCSV("AlturaFem.csv", datos => datosAltura = datos);
 
         function buscarPuntos(marca, datos) {
             if (datos.length === 0) {
@@ -300,6 +491,15 @@
             let puntosTotales = puntos1 + puntos2 + puntos3;
 
             document.getElementById(resultadoTotalid).innerText = `Puntos Totales: ${puntosTotales}`;
+        }
+
+        function toggleDivs() {
+            const check = document.getElementById("toggleSwitch");
+            document.getElementById("A").style.display = check.checked ? "none" : "block";
+            document.getElementById("B").style.display = check.checked ? "none" : "block";
+            
+            document.getElementById("A").style.display = check.checked ? "block" : "none";
+            document.getElementById("B").style.display = check.checked ? "block" : "none";
         }
     </script>
 </body>
