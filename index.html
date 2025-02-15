@@ -239,7 +239,7 @@ input:checked + .slider:before {
 
     <div class="container" id="B">
         
-        <h2>Triatlón <span class="destacada">B</span> Sub14 Femenino </h2>
+        <h2>Triatlón <span class="destacada">B</span> Sub14 <span id="GeneroB">Femenino</span></h2>
 
         <h3>Introduce las marcas:</h3>
         
@@ -277,7 +277,7 @@ input:checked + .slider:before {
 
     <div class="container" id="C">
         
-        <h2>Triatlón <span class="destacada">C</span> Sub14 Femenino </h2>
+        <h2>Triatlón <span class="destacada">C</span> Sub14 <span id="GeneroC">Femenino</span></h2>
 
         <h3>Introduce las marcas:</h3>
 
@@ -315,7 +315,7 @@ input:checked + .slider:before {
 
     <div class="container" id="D">
         
-        <h2>Triatlón <span class="destacada">D</span> Sub14 Femenino </h2>
+        <h2>Triatlón <span class="destacada">D</span> Sub14 <span id="GeneroD">Femenino</span></h2>
 
         <h3>Introduce las marcas:</h3>
         
@@ -354,7 +354,7 @@ input:checked + .slider:before {
 
     <div class="container" id="E">
         
-        <h2>Triatlón <span class="destacada">E</span> Sub14 Femenino </h2>
+        <h2>Triatlón <span class="destacada">E</span> Sub14 <span id="GeneroE">Femenino</span></h2>
 
         <h3>Introduce las marcas:</h3>
         
@@ -411,6 +411,7 @@ input:checked + .slider:before {
         let datosAltura = [];
         let datosDisco = [];
         let datosMarcha = [];
+        let genero = 0;
      
         function cargarCSV(url, callback) {
             fetch(url)
@@ -468,7 +469,7 @@ input:checked + .slider:before {
 
             let marcaNum = convertirFormato(marca);
             let marcaMasCercana = datos.reduce((a, b) => 
-                Math.abs(b[0] - marcaNum) < Math.abs(a[0] - marcaNum) ? b : a
+                Math.abs(b[genero] - marcaNum) < Math.abs(a[genero] - marcaNum) ? b : a
             );
 
             if (!marcaMasCercana) {
@@ -476,7 +477,7 @@ input:checked + .slider:before {
                 return null;
             }
 
-            return marcaMasCercana[1]; 
+            return marcaMasCercana[genero+1]; 
         }
 
         function mostrarPuntos(inputId, resultadoId, datos) {
@@ -529,7 +530,11 @@ input:checked + .slider:before {
             //document.getElementById("E").style.display = check.checked ? "none" : "block";
             
             document.getElementById("GeneroA").textContent = check.checked ? "Masculino" : "Femenino";
- 
+            document.getElementById("GeneroB").textContent = check.checked ? "Masculino" : "Femenino";
+            document.getElementById("GeneroC").textContent = check.checked ? "Masculino" : "Femenino";
+            document.getElementById("GeneroD").textContent = check.checked ? "Masculino" : "Femenino";
+            document.getElementById("GeneroE").textContent = check.checked ? "Masculino" : "Femenino";
+            genero = check.checked ? 2 : 0; //posicion del CSV desde donde cogemos los datos
         }
     </script>
 </body>
