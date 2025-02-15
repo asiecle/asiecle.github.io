@@ -411,6 +411,7 @@ input:checked + .slider:before {
         let datosAltura = [];
         let datosDisco = [];
         let datosMarcha = [];
+        let genero = "Femenino";
      
         function cargarCSV(url, callback) {
             fetch(url)
@@ -528,7 +529,7 @@ input:checked + .slider:before {
             document.getElementById("D").style.display = check.checked ? "none" : "block";
             document.getElementById("E").style.display = check.checked ? "none" : "block";
             
-            
+            genero= check.checked ? "Masculino" : "Femenino";
             
  
         }
