@@ -90,40 +90,82 @@
 <body>
     <div class="container">
         <h2>Calculadora de Puntos </h2>
+        <h2>Triatlón A Femenino </h2>
+
+        <h3>Introduce las marcas:</h3>
+        
+       
+
+        <label>80m (ss,cc):</label>
+            <div class="input-container">
+                <input type="text" id="marca80" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80', 'resultado80', datos80)">
+                <button class="clear-btn" onclick="clearInput('marca80', 'resultado80')">×</button>
+            </div>
+        <p id="resultado80" class="resultado"></p>
+
+        <label>80mv (ss,cc):</label>
+            <div class="input-container">
+                <input type="text" id="marca80v" placeholder="Ej: 12,75" onfocus="this.select()" onblur="mostrarPuntos('marca80v', 'resultado80v', datos80v)">
+                <button class="clear-btn" onclick="clearInput('marca80v', 'resultado80v')">×</button>
+            </div>
+        <p id="resultado80v" class="resultado"></p>
+        
+
+        <label>Peso (metros):</label>
+            <div class="input-container">
+                <input type="text" id="marcaPeso" placeholder="Ej: 4,75" onfocus="this.select()" onblur="mostrarPuntos('marcaPeso', 'resultadoPeso', datosPeso)">
+                <button class="clear-btn" onclick="clearInput('marcaPeso', 'resultadoPeso')">×</button>
+            </div>
+        <p id="resultadoPeso" class="resultado"></p>
+
+        <button onclick="calcularPuntos(datos80, datos80v, datosPeso, 'marca80', 'marca80v', 'marcaPeso', 'resultadoTotalA')">Calcular Total</button>
+        
+        <p id="resultadoTotalA" class="resultado"></p>
+    </div>
+    
+    <div class="container">
+        <h2>Calculadora de Puntos </h2>
         <h2>Triatlón B Femenino </h2>
 
         <h3>Introduce las marcas:</h3>
         
         <label>1000m (mm:ss.cc):</label>
             <div class="input-container">
-                <input type="text" id="marca3" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onfocus="this.select()" onblur="mostrarPuntos('marca3', 'resultado3', datos1000)">
-                <button class="clear-btn" onclick="clearInput('marca3', 'resultado3')">×</button>
+                <input type="text" id="marca1000" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onfocus="this.select()" onblur="mostrarPuntos('marca1000', 'resultado1000', datos1000)">
+                <button class="clear-btn" onclick="clearInput('marca1000', 'resultado1000')">×</button>
             </div>
-        <p id="resultado3" class="resultado"></p>
+        <p id="resultado1000" class="resultado"></p>
 
         <label>Longitud (metros):</label>
             <div class="input-container">
-                <input type="text" id="marca1" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marca1', 'resultado1', datosLongitud)">
-                <button class="clear-btn" onclick="clearInput('marca1', 'resultado1')">×</button>
+                <input type="text" id="marcaLongitud" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marcaLongitud', 'resultadoLongitud', datosLongitud)">
+                <button class="clear-btn" onclick="clearInput('marcaLongitud', 'resultadoLongitud')">×</button>
             </div>
-        <p id="resultado1" class="resultado"></p>
+        <p id="resultadoLongitud" class="resultado"></p>
 
         <label>Jabalina (metros):</label>
             <div class="input-container">
-                <input type="text" id="marca2" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca2', 'resultado2', datosJabalina)">
-                <button class="clear-btn" onclick="clearInput('marca2', 'resultado2')">×</button>
+                <input type="text" id="marcaJabalina" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaJabalina', 'resultadoJabalina', datosJabalina)">
+                <button class="clear-btn" onclick="clearInput('marcaJabalina', 'resultadoJabalina')">×</button>
             </div>
-        <p id="resultado2" class="resultado"></p>
+        <p id="resultadoJabalina" class="resultado"></p>
 
-        <button onclick="calcularPuntos()">Calcular Total</button>
+        <button onclick="calcularPuntos(datos1000, datosLongitud, datosJabalina, 'marca1000', 'marcaLongitud', 'marcaJabalina', 'resultadoTotalB')">Calcular Total</button>
         
-        <p id="resultadoTotal" class="resultado"></p>
+        <p id="resultadoTotalB" class="resultado"></p>
     </div>
 
     <script>
+        // Triatlon A
+        let datos80 = [];
+        let datos80v = [];
+        let datosPeso = [];
+        
+        // Triatlon B
         let datosLongitud = [];
         let datosJabalina = [];
         let datos1000 = [];
+        
 
         function cargarCSV(url, callback) {
             fetch(url)
@@ -161,6 +203,10 @@
             }
         }
 
+        cargarCSV("80Fem.csv", datos => datos80 = datos);
+        cargarCSV("80vFem.csv", datos => datos80v = datos);
+        cargarCSV("PesoFem.csv", datos => datosPeso = datos);
+        
         cargarCSV("LongitudFem.csv", datos => datosLongitud = datos);
         cargarCSV("JabalinaFem.csv", datos => datosJabalina = datos);
         cargarCSV("1000Fem.csv", datos => datos1000 = datos);
@@ -197,24 +243,24 @@
             }
         }
 
-        function calcularPuntos() {
-            if (datosLongitud.length === 0 || datosJabalina.length === 0 || datos1000.length === 0) {
+        function calcularPuntos(datos1, datos2, datos3, marca1id, marca2id, marca3id, resultadoTotalid) {
+            if (datos1.length === 0 || datos2.length === 0 || datos3.length === 0) {
                 alert("Los archivos CSV aún no han sido cargados.");
                 return;
             }
 
-            let marca1 = document.getElementById("marca1").value.trim();
-            let marca2 = document.getElementById("marca2").value.trim();
-            let marca3 = document.getElementById("marca3").value.trim();
+            let marca1 = document.getElementById(marca1id).value.trim();
+            let marca2 = document.getElementById(marca2id).value.trim();
+            let marca3 = document.getElementById(marca3id).value.trim();
 
             if (!marca1 || !marca2 || !marca3) {
                 alert("Introduce las tres marcas.");
                 return;
             }
 
-            let puntos1 = buscarPuntos(marca1, datosLongitud);
-            let puntos2 = buscarPuntos(marca2, datosJabalina);
-            let puntos3 = buscarPuntos(marca3, datos1000);
+            let puntos1 = buscarPuntos(marca1, datos1);
+            let puntos2 = buscarPuntos(marca2, datos2);
+            let puntos3 = buscarPuntos(marca3, datos3);
 
             if (puntos1 === null || puntos2 === null || puntos3 === null) {
                 return;
@@ -222,7 +268,7 @@
 
             let puntosTotales = puntos1 + puntos2 + puntos3;
 
-            document.getElementById("resultadoTotal").innerText = `Puntos Totales: ${puntosTotales}`;
+            document.getElementById(resultadoTotalid).innerText = `Puntos Totales: ${puntosTotales}`;
         }
     </script>
 </body>
