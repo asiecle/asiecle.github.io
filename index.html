@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: url("pista_roja.jpeg") no-repeat center center/cover;
+            background: url("imagenes/pista_roja.jpeg") no-repeat center center/cover;
             color: #fff;
             margin: 0;
             padding: 0;
@@ -448,15 +448,15 @@ input:checked + .slider:before {
             }
         }
 
-        cargarCSV("80Fem.csv", datos => datos80 = datos);
-        cargarCSV("80vFem.csv", datos => datos80v = datos);
-        cargarCSV("PesoFem.csv", datos => datosPeso = datos); 
-        cargarCSV("LongitudFem.csv", datos => datosLongitud = datos);
-        cargarCSV("JabalinaFem.csv", datos => datosJabalina = datos);
-        cargarCSV("1000Fem.csv", datos => datos1000 = datos);
-        cargarCSV("AlturaFem.csv", datos => datosAltura = datos);
-        cargarCSV("DiscoFem.csv", datos => datosDisco = datos);
-        cargarCSV("MarchaFem.csv", datos => datosMarcha = datos);
+        cargarCSV("CSV/80Fem.csv", datos => datos80 = datos);
+        cargarCSV("CSV/80vFem.csv", datos => datos80v = datos);
+        cargarCSV("CSV/PesoFem.csv", datos => datosPeso = datos); 
+        cargarCSV("CSV/LongitudFem.csv", datos => datosLongitud = datos);
+        cargarCSV("CSV/JabalinaFem.csv", datos => datosJabalina = datos);
+        cargarCSV("CSV/1000Fem.csv", datos => datos1000 = datos);
+        cargarCSV("CSV/AlturaFem.csv", datos => datosAltura = datos);
+        cargarCSV("CSV/DiscoFem.csv", datos => datosDisco = datos);
+        cargarCSV("CSV/MarchaFem.csv", datos => datosMarcha = datos);
 
         function buscarPuntos(marca, datos) {
             if (datos.length === 0) {
