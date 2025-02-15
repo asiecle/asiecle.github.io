@@ -114,7 +114,7 @@
         <label>Peso (metros):</label>
             <div class="input-container">
                 <input type="text" id="marcaPeso" placeholder="Ej: 4,75" onfocus="this.select()" onblur="mostrarPuntos('marcaPeso', 'resultadoPeso', datosPeso)">
-                <button class="clear-btn" onclick="clearInput('marcaPeso', 'resultadoPeso')">×</button>
+                <button class="clear-btn" onclick="clearInput('marcaPeso', 'resultadoPeso', 'resultadoTotalA')">×</button>
             </div>
         <p id="resultadoPeso" class="resultado"></p>
 
@@ -139,7 +139,7 @@
         <label>Longitud (metros):</label>
             <div class="input-container">
                 <input type="text" id="marcaLongitud" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marcaLongitud', 'resultadoLongitud', datosLongitud)">
-                <button class="clear-btn" onclick="clearInput('marcaLongitud', 'resultadoLongitud')">×</button>
+                <button class="clear-btn" onclick="clearInput('marcaLongitud', 'resultadoLongitud', 'resultadoTotalB')">×</button>
             </div>
         <p id="resultadoLongitud" class="resultado"></p>
 
@@ -184,10 +184,12 @@
                 .catch(error => alert(error.message));
         }
         
-        function clearInput(inputId, resultadoId) {
+        function clearInput(inputId, resultadoId, resultadoTotalId) {
             const input = document.getElementById(inputId);
             const inputResultado = document.getElementById(resultadoId);
+            const inputResultadoTotal = document.getElementById(resultadoTotalId);
             inputResultado.innerText = '' // Oculta el resultado de puntos
+            inputResultadoTotal.innerText = '' // Oculta el resultado de puntos total
             input.value = '';  // Borra el contenido
             input.focus();      // Coloca el cursor en el input
         }
