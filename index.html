@@ -412,7 +412,7 @@ input:checked + .slider:before {
         let datosDisco = [];
         let datosMarcha = [];
         let genero = 0;
-     
+         
         function cargarCSV(url, callback) {
             fetch(url)
                 .then(response => {
@@ -425,7 +425,25 @@ input:checked + .slider:before {
                         convertirFormato(fila[0]),
                         parseInt(fila[1])
                     ]);
-                    callback(datos);
+                    callback(datos);   
+                })
+                .catch(error => alert(error.message));
+        }
+
+        function cargarCSVM(url, callback) {
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error(`No se pudo cargar ${url}`);
+                    return response.text();
+                })
+                .then(texto => {
+                    let datos = texto.split("\n").map(fila => fila.split(";")).slice(1);
+                    datos = datos.map(fila => [
+                        convertirFormato(fila[2]),
+                        parseInt(fila[3])
+                    ]);
+                    console.log(datos);
+                    callback(datos);   
                 })
                 .catch(error => alert(error.message));
         }
@@ -451,7 +469,7 @@ input:checked + .slider:before {
             }
         }
 
-        cargarCSV("CSV/80Fem.csv", datos => datos80 = datos);
+        cargarCSV("CSV/80Fem.csv", datos => datos80 = datos, datosM => datos80 = datosM);
         cargarCSV("CSV/80vFem.csv", datos => datos80v = datos);
         cargarCSV("CSV/PesoFem.csv", datos => datosPeso = datos); 
         cargarCSV("CSV/LongitudFem.csv", datos => datosLongitud = datos);
@@ -462,14 +480,15 @@ input:checked + .slider:before {
         cargarCSV("CSV/MarchaFem.csv", datos => datosMarcha = datos);
 
         function buscarPuntos(marca, datos) {
+            
             if (datos.length === 0) {
                 alert("Los datos aún no han sido cargados. Inténtalo de nuevo.");
                 return null;
             }
-
+           
             let marcaNum = convertirFormato(marca);
             let marcaMasCercana = datos.reduce((a, b) => 
-                Math.abs(b[genero] - marcaNum) < Math.abs(a[genero] - marcaNum) ? b : a
+               Math.abs(parseFloat(b[0]) - marcaNum) < Math.abs(parseFloat(a[0]) - marcaNum) ? b : a
             );
 
             if (!marcaMasCercana) {
@@ -477,7 +496,7 @@ input:checked + .slider:before {
                 return null;
             }
 
-            return marcaMasCercana[genero+1]; 
+            return marcaMasCercana[1]; 
         }
 
         function mostrarPuntos(inputId, resultadoId, datos) {
@@ -520,35 +539,25 @@ input:checked + .slider:before {
 
             document.getElementById(resultadoTotalid).innerText = `Puntos Totales: ${puntosTotales}`;
         }
-        
-        document.addEventListener("DOMContentLoaded", function () {
-            // Selecciona todos los inputs del formulario
-            const inputs = document.querySelectorAll("input");
-        
-            inputs.forEach((input, index) => {
-                input.addEventListener("keydown", function (event) {
-                    if (event.key === "Enter") {
-                        event.preventDefault(); // Evita que el formulario se envíe
-        
-                        //miFuncion(); // Llama a la función que desees ejecutar
-        
-                        // Mueve el foco al siguiente input si existe
-                        const nextInput = inputs[index + 1];
-                        if (nextInput) {
-                            nextInput.focus();
-                        }
-                    }
-                });
-            });
-        });
-        
-        // Función de ejemplo a ejecutar al pulsar Enter
-        function miFuncion() {
-            console.log("Se ha ejecutado la función");
+        function esperar(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
         }
-
+        async function ejecutar() {
+            
+            await esperar(500); // Espera 500 ms
+            
+            let valorMarca80A = document.getElementById("marca80A");
+            let valorMarca80vA = document.getElementById("marca80vA");
+            let valorMarcaPesoA = document.getElementById("marcaPesoA");
+            let eventoBlur = new Event("blur");
+            
+            valorMarca80A.dispatchEvent(eventoBlur); // Dispara el evento blur
+            valorMarca80vA.dispatchEvent(eventoBlur); // Dispara el evento blur
+            valorMarcaPesoA.dispatchEvent(eventoBlur); // Dispara el evento blur
+        }
         function toggleDivs() {
             const check = document.getElementById("toggleSwitch");
+            
             //document.getElementById("A").style.display = check.checked ? "none" : "block";
             //document.getElementById("B").style.display = check.checked ? "none" : "block";
             //document.getElementById("C").style.display = check.checked ? "none" : "block";
@@ -561,6 +570,28 @@ input:checked + .slider:before {
             document.getElementById("GeneroD").textContent = check.checked ? "Masculino" : "Femenino";
             document.getElementById("GeneroE").textContent = check.checked ? "Masculino" : "Femenino";
             genero = check.checked ? 2 : 0; //posicion del CSV desde donde cogemos los datos
+            if (check.checked) {
+                cargarCSVM("CSV/80Fem.csv", datos => datos80 = datos, datosM => datos80 = datosM);
+            //    cargarCSVM("CSV/80vFem.csv", datos => datos80v = datos);
+            //    cargarCSVM("CSV/PesoFem.csv", datos => datosPeso = datos); 
+            //    cargarCSVM("CSV/LongitudFem.csv", datos => datosLongitud = datos);
+            //    cargarCSVM("CSV/JabalinaFem.csv", datos => datosJabalina = datos);
+            //    cargarCSVM("CSV/1000Fem.csv", datos => datos1000 = datos);
+            //    cargarCSVM("CSV/AlturaFem.csv", datos => datosAltura = datos);
+            //    cargarCSVM("CSV/DiscoFem.csv", datos => datosDisco = datos);
+            //    cargarCSVM("CSV/MarchaFem.csv", datos => datosMarcha = datos);
+            } else {
+                cargarCSV("CSV/80Fem.csv", datos => datos80 = datos, datosM => datos80 = datosM);
+             //   cargarCSV("CSV/80vFem.csv", datos => datos80v = datos);
+             //   cargarCSV("CSV/PesoFem.csv", datos => datosPeso = datos); 
+             //   cargarCSV("CSV/LongitudFem.csv", datos => datosLongitud = datos);
+             //   cargarCSV("CSV/JabalinaFem.csv", datos => datosJabalina = datos);
+             //   cargarCSV("CSV/1000Fem.csv", datos => datos1000 = datos);
+             //   cargarCSV("CSV/AlturaFem.csv", datos => datosAltura = datos);
+             //   cargarCSV("CSV/DiscoFem.csv", datos => datosDisco = datos);
+             //   cargarCSV("CSV/MarchaFem.csv", datos => datosMarcha = datos);
+            }
+            ejecutar();   
         }
     </script>
 </body>
