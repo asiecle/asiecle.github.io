@@ -207,26 +207,26 @@ input:checked + .slider:before {
 
         <label>80m (ss,cc):</label>
             <div class="input-container">
-                <input type="text" id="marca80A" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80A', 'resultado80A', datos80)">
+                <input type="text" id="marca80A" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80A', 'resultado80A', datos80, 'totalA')">
                 <button class="clear-btn" onclick="clearInput('marca80A', 'resultado80A', 'resultadoTotalA')">×</button>
             </div>
         <p id="resultado80A" class="resultado"></p>
 
         <label>80mv (ss,cc):</label>
             <div class="input-container">
-                <input type="text" id="marca80vA" placeholder="Ej: 12,75" onfocus="this.select()" onblur="mostrarPuntos('marca80vA', 'resultado80vA', datos80v)">
+                <input type="text" id="marca80vA" placeholder="Ej: 12,75" onfocus="this.select()" onblur="mostrarPuntos('marca80vA', 'resultado80vA', datos80v, 'totalA')">
                 <button class="clear-btn" onclick="clearInput('marca80vA', 'resultado80vA', 'resultadoTotalA')">×</button>
             </div>
         <p id="resultado80vA" class="resultado"></p>
         
         <label>Peso (metros):</label>
             <div class="input-container">
-                <input type="text" id="marcaPesoA" placeholder="Ej: 4,75" onfocus="this.select()" onblur="mostrarPuntos('marcaPesoA', 'resultadoPesoA', datosPeso)">
+                <input type="text" id="marcaPesoA" placeholder="Ej: 4,75" onfocus="this.select()" onblur="mostrarPuntos('marcaPesoA', 'resultadoPesoA', datosPeso, 'totalA')">
                 <button class="clear-btn" onclick="clearInput('marcaPesoA', 'resultadoPesoA', 'resultadoTotalA')">×</button>
             </div>
         <p id="resultadoPesoA" class="resultado"></p>
 
-        <button onclick="calcularPuntos(datos80, datos80v, datosPeso, 'marca80A', 'marca80vA', 'marcaPesoA', 'resultadoTotalA')">Calcular Total</button>
+        <button id="totalA" onclick="calcularPuntos(datos80, datos80v, datosPeso, 'marca80A', 'marca80vA', 'marcaPesoA', 'resultadoTotalA')">Calcular Total</button>
         
         <p id="resultadoTotalA" class="resultado"></p>
         <p></p>
@@ -245,26 +245,26 @@ input:checked + .slider:before {
         
         <label>1000m (mm:ss.cc):</label>
             <div class="input-container">
-                <input type="text" id="marca1000B" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onfocus="this.select()" onblur="mostrarPuntos('marca1000B', 'resultado1000B', datos1000)">
+                <input type="text" id="marca1000B" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onfocus="this.select()" onblur="mostrarPuntos('marca1000B', 'resultado1000B', datos1000, 'totalB')">
                 <button class="clear-btn" onclick="clearInput('marca1000B', 'resultado1000B', 'resultadoTotalB')">×</button>
             </div>
         <p id="resultado1000B" class="resultado"></p>
 
         <label>Longitud (metros):</label>
             <div class="input-container">
-                <input type="text" id="marcaLongitudB" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marcaLongitudB', 'resultadoLongitudB', datosLongitud)">
+                <input type="text" id="marcaLongitudB" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marcaLongitudB', 'resultadoLongitudB', datosLongitud, 'totalB')">
                 <button class="clear-btn" onclick="clearInput('marcaLongitudB', 'resultadoLongitudB', 'resultadoTotalB')">×</button>
             </div>
         <p id="resultadoLongitudB" class="resultado"></p>
 
         <label>Jabalina (metros):</label>
             <div class="input-container">
-                <input type="text" id="marcaJabalinaB" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaJabalinaB', 'resultadoJabalinaB', datosJabalina)">
+                <input type="text" id="marcaJabalinaB" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaJabalinaB', 'resultadoJabalinaB', datosJabalina, 'totalB')">
                 <button class="clear-btn" onclick="clearInput('marcaJabalinaB', 'resultadoJabalinaB', 'resultadoTotalB')">×</button>
             </div>
         <p id="resultadoJabalinaB" class="resultado"></p>
 
-        <button onclick="calcularPuntos(datos1000, datosLongitud, datosJabalina, 'marca1000B', 'marcaLongitudB', 'marcaJabalinaB', 'resultadoTotalB')">Calcular Total</button>
+        <button id="totalB" onclick="calcularPuntos(datos1000, datosLongitud, datosJabalina, 'marca1000B', 'marcaLongitudB', 'marcaJabalinaB', 'resultadoTotalB')">Calcular Total</button>
         
         <p id="resultadoTotalB" class="resultado"></p>
         <p></p>
@@ -283,26 +283,26 @@ input:checked + .slider:before {
 
         <label>80m (ss,cc):</label>
             <div class="input-container">
-                <input type="text" id="marca80C" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80C', 'resultado80C', datos80)">
+                <input type="text" id="marca80C" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80C', 'resultado80C', datos80, 'totalC')">
                 <button class="clear-btn" onclick="clearInput('marca80C', 'resultado80C', 'resultadoTotalC')">×</button>
             </div>
         <p id="resultado80C" class="resultado"></p>
 
         <label>Altura (metros):</label>
             <div class="input-container">
-                <input type="text" id="marcaAlturaC" placeholder="Ej: 1,25" onfocus="this.select()" onblur="mostrarPuntos('marcaAlturaC', 'resultadoAlturaC', datosAltura)">
+                <input type="text" id="marcaAlturaC" placeholder="Ej: 1,25" onfocus="this.select()" onblur="mostrarPuntos('marcaAlturaC', 'resultadoAlturaC', datosAltura, 'totalC')">
                 <button class="clear-btn" onclick="clearInput('marcaAlturaC', 'resultadoAlturaC', 'resultadoTotalC')">×</button>
             </div>
         <p id="resultadoAlturaC" class="resultado"></p>
         
         <label>Longitud (metros):</label>
         <div class="input-container">
-            <input type="text" id="marcaLongitudC" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marcaLongitudC', 'resultadoLongitudC', datosLongitud)">
+            <input type="text" id="marcaLongitudC" placeholder="Ej: 8,75" onfocus="this.select()" onblur="mostrarPuntos('marcaLongitudC', 'resultadoLongitudC', datosLongitud, 'totalC')">
             <button class="clear-btn" onclick="clearInput('marcaLongitudC', 'resultadoLongitudC', 'resultadoTotalC')">×</button>
         </div>
         <p id="resultadoLongitudC" class="resultado"></p>
 
-        <button onclick="calcularPuntos(datos80, datosAltura, datosLongitud, 'marca80C', 'marcaAlturaC', 'marcaLongitudC', 'resultadoTotalC')">Calcular Total</button>
+        <button id="totalC" onclick="calcularPuntos(datos80, datosAltura, datosLongitud, 'marca80C', 'marcaAlturaC', 'marcaLongitudC', 'resultadoTotalC')">Calcular Total</button>
         
         <p id="resultadoTotalC" class="resultado"></p>
         <p></p>
@@ -321,14 +321,14 @@ input:checked + .slider:before {
         
         <label>80m (ss,cc):</label>
             <div class="input-container">
-                <input type="text" id="marca80D" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80D', 'resultado80D', datos80)">
+                <input type="text" id="marca80D" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80D', 'resultado80D', datos80, 'totalD')">
                 <button class="clear-btn" onclick="clearInput('marca80D', 'resultado80D', 'resultadoTotalD')">×</button>
             </div>
         <p id="resultado80D" class="resultado"></p>
 
         <label>Peso (metros):</label>
             <div class="input-container">
-                <input type="text" id="marcaPesoD" placeholder="Ej: 4,75" onfocus="this.select()" onblur="mostrarPuntos('marcaPesoD', 'resultadoPesoD', datosPeso)">
+                <input type="text" id="marcaPesoD" placeholder="Ej: 4,75" onfocus="this.select()" onblur="mostrarPuntos('marcaPesoD', 'resultadoPesoD', datosPeso, 'totalD')">
                 <button class="clear-btn" onclick="clearInput('marcaPesoD', 'resultadoPesoD', 'resultadoTotalD')">×</button>
             </div>
         <p id="resultadoPesoD" class="resultado"></p>
@@ -336,12 +336,12 @@ input:checked + .slider:before {
 
         <label>Disco (metros):</label>
             <div class="input-container">
-                <input type="text" id="marcaDiscoD" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaDiscoD', 'resultadoDiscoD', datosDisco)">
+                <input type="text" id="marcaDiscoD" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaDiscoD', 'resultadoDiscoD', datosDisco, 'totalD')">
                 <button class="clear-btn" onclick="clearInput('marcaDiscoD', 'resultadoDiscoD', 'resultadoTotalD')">×</button>
             </div>
         <p id="resultadoDiscoD" class="resultado"></p>
 
-        <button onclick="calcularPuntos(datos80, datosPeso, datosDisco, 'marca80D', 'marcaPesoD', 'marcaDiscoD', 'resultadoTotalD')">Calcular Total</button>
+        <button id="totalD" onclick="calcularPuntos(datos80, datosPeso, datosDisco, 'marca80D', 'marcaPesoD', 'marcaDiscoD', 'resultadoTotalD')">Calcular Total</button>
         
         <p id="resultadoTotalD" class="resultado"></p>
         <p></p>
@@ -360,26 +360,26 @@ input:checked + .slider:before {
         
         <label>2000mm (mm:ss.cc):</label>
             <div class="input-container">
-                <input type="text" id="marcaMarchaE" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onfocus="this.select()" onblur="mostrarPuntos('marcaMarchaE', 'resultadoMarchaE', datosMarcha)">
+                <input type="text" id="marcaMarchaE" placeholder="Ej: 03:15.25" pattern="\\d{2}:\\d{2}\\.\\d{2}" title="Formato: mm:ss.cc" onfocus="this.select()" onblur="mostrarPuntos('marcaMarchaE', 'resultadoMarchaE', datosMarcha, 'totalE')">
                 <button class="clear-btn" onclick="clearInput('marcaMarchaE', 'resultadoMarchaE', 'resultadoTotalE')">×</button>
             </div>
         <p id="resultadoMarchaE" class="resultado"></p>
 
         <label>80m (ss,cc):</label>
             <div class="input-container">
-                <input type="text" id="marca80E" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80E', 'resultado80E', datos80)">
+                <input type="text" id="marca80E" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marca80E', 'resultado80E', datos80, 'totalE')">
                 <button class="clear-btn" onclick="clearInput('marca80E', 'resultado80E', 'resultadoTotalE')">×</button>
             </div>
         <p id="resultado80E" class="resultado"></p>
 
         <label>Jabalina (metros):</label>
             <div class="input-container">
-                <input type="text" id="marcaJabalinaE" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaJabalinaE', 'resultadoJabalinaE', datosJabalina)">
+                <input type="text" id="marcaJabalinaE" placeholder="Ej: 10,75" onfocus="this.select()" onblur="mostrarPuntos('marcaJabalinaE', 'resultadoJabalinaE', datosJabalina, 'totalE')">
                 <button class="clear-btn" onclick="clearInput('marcaJabalinaE', 'resultadoJabalinaE', 'resultadoTotalE')">×</button>
             </div>
         <p id="resultadoJabalinaE" class="resultado"></p>
 
-        <button onclick="calcularPuntos(datosMarcha, datos80, datosJabalina, 'marcaMarchaE', 'marca80E', 'marcaJabalinaE', 'resultadoTotalE')">Calcular Total</button>
+        <button id="totalE" onclick="calcularPuntos(datosMarcha, datos80, datosJabalina, 'marcaMarchaE', 'marca80E', 'marcaJabalinaE', 'resultadoTotalE')">Calcular Total</button>
         
         <p id="resultadoTotalE" class="resultado"></p>
         <p></p>
@@ -413,7 +413,7 @@ input:checked + .slider:before {
         let datosMarcha = [];
         let genero = 0;
          
-        function cargarCSV(url, callback) {
+        function cargarCSV_New(url, callback,col) {
             fetch(url)
                 .then(response => {
                     if (!response.ok) throw new Error(`No se pudo cargar ${url}`);
@@ -422,27 +422,10 @@ input:checked + .slider:before {
                 .then(texto => {
                     let datos = texto.split("\n").map(fila => fila.split(";")).slice(1);
                     datos = datos.map(fila => [
-                        convertirFormato(fila[0]),
-                        parseInt(fila[1])
+                        convertirFormato(fila[col]),
+                        parseInt(fila[col+1])
                     ]);
-                    callback(datos);   
-                })
-                .catch(error => alert(error.message));
-        }
-
-        function cargarCSVM(url, callback) {
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) throw new Error(`No se pudo cargar ${url}`);
-                    return response.text();
-                })
-                .then(texto => {
-                    let datos = texto.split("\n").map(fila => fila.split(";")).slice(1);
-                    datos = datos.map(fila => [
-                        convertirFormato(fila[2]),
-                        parseInt(fila[3])
-                    ]);
-                    console.log(datos);
+                     
                     callback(datos);   
                 })
                 .catch(error => alert(error.message));
@@ -457,7 +440,7 @@ input:checked + .slider:before {
             input.value = '';  // Borra el contenido
             input.focus();      // Coloca el cursor en el input
         }
-        
+
         document.addEventListener("DOMContentLoaded", function () {
             // Selecciona todos los inputs del formulario
             const inputs = document.querySelectorAll("input");
@@ -466,9 +449,7 @@ input:checked + .slider:before {
                 input.addEventListener("keydown", function (event) {
                     if (event.key === "Enter") {
                         event.preventDefault(); // Evita que el formulario se envíe
-
                         
-
                         // Mueve el foco al siguiente input si existe
                         const nextInput = inputs[index + 1];
                         if (nextInput) {
@@ -489,16 +470,15 @@ input:checked + .slider:before {
                 return parseFloat(valor.replace(",", "."));
             }
         }
-
-        cargarCSV("CSV/80Fem.csv", datos => datos80 = datos, datosM => datos80 = datosM);
-        cargarCSV("CSV/80vFem.csv", datos => datos80v = datos);
-        cargarCSV("CSV/PesoFem.csv", datos => datosPeso = datos); 
-        cargarCSV("CSV/LongitudFem.csv", datos => datosLongitud = datos);
-        cargarCSV("CSV/JabalinaFem.csv", datos => datosJabalina = datos);
-        cargarCSV("CSV/1000Fem.csv", datos => datos1000 = datos);
-        cargarCSV("CSV/AlturaFem.csv", datos => datosAltura = datos);
-        cargarCSV("CSV/DiscoFem.csv", datos => datosDisco = datos);
-        cargarCSV("CSV/MarchaFem.csv", datos => datosMarcha = datos);
+        cargarCSV_New("CSV/MarcasFemMas.csv", datos => datos80 = datos,0);
+        cargarCSV_New("CSV/MarcasFemMas.csv", datos => datos80v = datos,4);
+        cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosJabalina = datos,8);
+        cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosPeso = datos,12);
+        cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosDisco = datos,16);
+        cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosLongitud = datos,20);
+        cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosMarcha = datos,24);
+        cargarCSV_New("CSV/MarcasFemMas.csv", datos => datos1000 = datos,28);
+        cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosAltura = datos,32);
 
         function buscarPuntos(marca, datos) {
             
@@ -520,17 +500,22 @@ input:checked + .slider:before {
             return marcaMasCercana[1]; 
         }
 
-        function mostrarPuntos(inputId, resultadoId, datos) {
+        function mostrarPuntos(inputId, resultadoId, datos, botonTotal) {
             let marca = document.getElementById(inputId).value.trim();
             if (!marca) {
                 document.getElementById(resultadoId).innerText = "";
                 return;
             }
 
-            let puntos = buscarPuntos(marca, datos);
+            let puntos = marca == 0 ? 0 : buscarPuntos(marca, datos);
             if (puntos !== null) {
                 document.getElementById(resultadoId).innerText = `Puntos: ${puntos}`;
             }
+            let calPun = document.getElementById(botonTotal);
+
+            let eventoClick = new Event("click");
+            
+            calPun.dispatchEvent(eventoClick); // Dispara el evento click
         }
 
         function calcularPuntos(datos1, datos2, datos3, marca1id, marca2id, marca3id, resultadoTotalid) {
@@ -543,14 +528,14 @@ input:checked + .slider:before {
             let marca2 = document.getElementById(marca2id).value.trim();
             let marca3 = document.getElementById(marca3id).value.trim();
 
-            if (!marca1 || !marca2 || !marca3) {
-                alert("Introduce las tres marcas.");
-                return;
-            }
+           // if (!marca1 || !marca2 || !marca3) {
+            //    alert("Introduce las tres marcas.");
+           //     return;
+           // }
 
-            let puntos1 = buscarPuntos(marca1, datos1);
-            let puntos2 = buscarPuntos(marca2, datos2);
-            let puntos3 = buscarPuntos(marca3, datos3);
+            let puntos1 = marca1 == 0 ? 0: buscarPuntos(marca1, datos1);
+            let puntos2 = marca2 == 0 ? 0: buscarPuntos(marca2, datos2);
+            let puntos3 = marca3 == 0 ? 0: buscarPuntos(marca3, datos3);
 
             if (puntos1 === null || puntos2 === null || puntos3 === null) {
                 return;
@@ -570,47 +555,87 @@ input:checked + .slider:before {
             let valorMarca80A = document.getElementById("marca80A");
             let valorMarca80vA = document.getElementById("marca80vA");
             let valorMarcaPesoA = document.getElementById("marcaPesoA");
+
+            let valorMarca1000B = document.getElementById("marca1000B");
+            let valorMarcaLongitudB = document.getElementById("marcaLongitudB");
+            let valorMarcaJabalinaB = document.getElementById("marcaJabalinaB");
+
+            let valorMarca80C = document.getElementById("marca80C");
+            let valorMarcaAlturaC = document.getElementById("marcaAlturaC");
+            let valorMarcaLongitudC = document.getElementById("marcaLongitudC");
+
+            let valorMarca80D = document.getElementById("marca80D");
+            let valorMarcaPesoD = document.getElementById("marcaPesoD");
+            let valorMarcaDiscoD = document.getElementById("marcaDiscoD");
+
+            let valorMarcaMarchaE = document.getElementById("marcaMarchaE");
+            let valorMarca80E = document.getElementById("marca80E");
+            let valorMarcaJabalinaE = document.getElementById("marcaJabalinaE");
+
             let eventoBlur = new Event("blur");
             
             valorMarca80A.dispatchEvent(eventoBlur); // Dispara el evento blur
             valorMarca80vA.dispatchEvent(eventoBlur); // Dispara el evento blur
             valorMarcaPesoA.dispatchEvent(eventoBlur); // Dispara el evento blur
+
+            valorMarca1000B.dispatchEvent(eventoBlur); // Dispara el evento blur
+            valorMarcaLongitudB.dispatchEvent(eventoBlur); // Dispara el evento blur
+            valorMarcaJabalinaB.dispatchEvent(eventoBlur); // Dispara el evento blur
+
+            valorMarca80C.dispatchEvent(eventoBlur); // Dispara el evento blur
+            valorMarcaAlturaC.dispatchEvent(eventoBlur); // Dispara el evento blur
+            valorMarcaLongitudC.dispatchEvent(eventoBlur); // Dispara el evento blur
+
+            valorMarca80D.dispatchEvent(eventoBlur); // Dispara el evento blur
+            valorMarcaPesoD.dispatchEvent(eventoBlur); // Dispara el evento blur
+            valorMarcaDiscoD.dispatchEvent(eventoBlur); // Dispara el evento blur
+
+            valorMarcaMarchaE.dispatchEvent(eventoBlur); // Dispara el evento blur
+            valorMarca80E.dispatchEvent(eventoBlur); // Dispara el evento blur
+            valorMarcaJabalinaE.dispatchEvent(eventoBlur); // Dispara el evento blur
+
+            let TotalA = document.getElementById("totalA");
+            let TotalB = document.getElementById("totalB");
+            let TotalC = document.getElementById("totalC");
+            let TotalD = document.getElementById("totalD");
+            let TotalE = document.getElementById("totalE");
+            let eventoClick = new Event("click");
+            TotalA.dispatchEvent(eventoClick); // Dispara el evento click
+            TotalB.dispatchEvent(eventoClick); // Dispara el evento click
+            TotalC.dispatchEvent(eventoClick); // Dispara el evento click
+            TotalD.dispatchEvent(eventoClick); // Dispara el evento click
+            TotalE.dispatchEvent(eventoClick); // Dispara el evento click
         }
         function toggleDivs() {
             const check = document.getElementById("toggleSwitch");
-            
-            //document.getElementById("A").style.display = check.checked ? "none" : "block";
-            //document.getElementById("B").style.display = check.checked ? "none" : "block";
-            //document.getElementById("C").style.display = check.checked ? "none" : "block";
-            //document.getElementById("D").style.display = check.checked ? "none" : "block";
-            //document.getElementById("E").style.display = check.checked ? "none" : "block";
             
             document.getElementById("GeneroA").textContent = check.checked ? "Masculino" : "Femenino";
             document.getElementById("GeneroB").textContent = check.checked ? "Masculino" : "Femenino";
             document.getElementById("GeneroC").textContent = check.checked ? "Masculino" : "Femenino";
             document.getElementById("GeneroD").textContent = check.checked ? "Masculino" : "Femenino";
             document.getElementById("GeneroE").textContent = check.checked ? "Masculino" : "Femenino";
+
             genero = check.checked ? 2 : 0; //posicion del CSV desde donde cogemos los datos
             if (check.checked) {
-                cargarCSVM("CSV/80Fem.csv", datos => datos80 = datos, datosM => datos80 = datosM);
-            //    cargarCSVM("CSV/80vFem.csv", datos => datos80v = datos);
-            //    cargarCSVM("CSV/PesoFem.csv", datos => datosPeso = datos); 
-            //    cargarCSVM("CSV/LongitudFem.csv", datos => datosLongitud = datos);
-            //    cargarCSVM("CSV/JabalinaFem.csv", datos => datosJabalina = datos);
-            //    cargarCSVM("CSV/1000Fem.csv", datos => datos1000 = datos);
-            //    cargarCSVM("CSV/AlturaFem.csv", datos => datosAltura = datos);
-            //    cargarCSVM("CSV/DiscoFem.csv", datos => datosDisco = datos);
-            //    cargarCSVM("CSV/MarchaFem.csv", datos => datosMarcha = datos);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datos80 = datos,2);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datos80v = datos,6);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosJabalina = datos,10);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosPeso = datos,14);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosDisco = datos,18);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosLongitud = datos,22);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosMarcha = datos,26);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datos1000 = datos,30);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosAltura = datos,34);
             } else {
-                cargarCSV("CSV/80Fem.csv", datos => datos80 = datos, datosM => datos80 = datosM);
-             //   cargarCSV("CSV/80vFem.csv", datos => datos80v = datos);
-             //   cargarCSV("CSV/PesoFem.csv", datos => datosPeso = datos); 
-             //   cargarCSV("CSV/LongitudFem.csv", datos => datosLongitud = datos);
-             //   cargarCSV("CSV/JabalinaFem.csv", datos => datosJabalina = datos);
-             //   cargarCSV("CSV/1000Fem.csv", datos => datos1000 = datos);
-             //   cargarCSV("CSV/AlturaFem.csv", datos => datosAltura = datos);
-             //   cargarCSV("CSV/DiscoFem.csv", datos => datosDisco = datos);
-             //   cargarCSV("CSV/MarchaFem.csv", datos => datosMarcha = datos);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datos80 = datos,0);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datos80v = datos,4);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosJabalina = datos,8);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosPeso = datos,12);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosDisco = datos,16);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosLongitud = datos,20);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosMarcha = datos,24);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datos1000 = datos,28);
+                cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosAltura = datos,32);
             }
             ejecutar();   
         }
