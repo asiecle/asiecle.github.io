@@ -240,19 +240,19 @@ function toggleDivs() {
     RecalculoDeMarcasSegunGenero();   
 
     // Marcas de corte según género
-    document.getElementById("corte05A").textContent = check.checked ? "0" : "946";
-    document.getElementById("corte10A").textContent = check.checked ? "0" : "1042";
+    document.getElementById("corte05A").textContent = check.checked ? "248" : "946";
+    document.getElementById("corte10A").textContent = check.checked ? "472" : "1042";
 
-    document.getElementById("corte05B").textContent = check.checked ? "0" : "824";
-    document.getElementById("corte10B").textContent = check.checked ? "0" : "812";
+    document.getElementById("corte05B").textContent = check.checked ? "678" : "824";
+    document.getElementById("corte10B").textContent = check.checked ? "676" : "812";
 
-    document.getElementById("corte05C").textContent = check.checked ? "0" : "932";
-    document.getElementById("corte10C").textContent = check.checked ? "0" : "1031";
+    document.getElementById("corte05C").textContent = check.checked ? "484" : "932";
+    document.getElementById("corte10C").textContent = check.checked ? "550" : "1031";
 
-    document.getElementById("corte05D").textContent = check.checked ? "0" : "876";
-    document.getElementById("corte10D").textContent = check.checked ? "0" : "892";
+    document.getElementById("corte05D").textContent = check.checked ? "677" : "876";
+    document.getElementById("corte10D").textContent = check.checked ? "799" : "892";
 
-    document.getElementById("corte05E").textContent = check.checked ? "0" : "1071";
-    document.getElementById("corte10E").textContent = check.checked ? "0" : "1150";
+    document.getElementById("corte05E").textContent = check.checked ? "241" : "1071";
+    document.getElementById("corte10E").textContent = check.checked ? "293" : "1150";
 
 }
