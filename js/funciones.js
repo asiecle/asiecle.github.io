@@ -9,7 +9,7 @@ let datos1000 = [];
 let datosAltura = [];
 let datosDisco = [];
 let datosMarcha = [];
-let genero = 0;
+
  
 function cargarCSV_New(url, callback,col) {
     fetch(url)
@@ -146,7 +146,7 @@ function calcularPuntos(datos1, datos2, datos3, marca1id, marca2id, marca3id, re
 function esperar(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function ejecutar() {
+async function RecalculoDeMarcasSegunGenero() {
     
     await esperar(500); // Espera 500 ms
     
@@ -207,13 +207,14 @@ async function ejecutar() {
 function toggleDivs() {
     const check = document.getElementById("toggleSwitch");
     
+    // Cambia el texto de género en cada triatlón
     document.getElementById("GeneroA").textContent = check.checked ? "Masculino" : "Femenino";
     document.getElementById("GeneroB").textContent = check.checked ? "Masculino" : "Femenino";
     document.getElementById("GeneroC").textContent = check.checked ? "Masculino" : "Femenino";
     document.getElementById("GeneroD").textContent = check.checked ? "Masculino" : "Femenino";
     document.getElementById("GeneroE").textContent = check.checked ? "Masculino" : "Femenino";
-
-    genero = check.checked ? 2 : 0; //posicion del CSV desde donde cogemos los datos
+    
+    // Carga los datos según el género elegido
     if (check.checked) {
         cargarCSV_New("CSV/MarcasFemMas.csv", datos => datos80 = datos,2);
         cargarCSV_New("CSV/MarcasFemMas.csv", datos => datos80v = datos,6);
@@ -235,5 +236,23 @@ function toggleDivs() {
         cargarCSV_New("CSV/MarcasFemMas.csv", datos => datos1000 = datos,28);
         cargarCSV_New("CSV/MarcasFemMas.csv", datos => datosAltura = datos,32);
     }
-    ejecutar();   
+    // Una vez cargados los datos correctos recalculamos las marcas
+    RecalculoDeMarcasSegunGenero();   
+
+    // Marcas de corte según género
+    document.getElementById("corte05A").textContent = check.checked ? "0" : "946";
+    document.getElementById("corte10A").textContent = check.checked ? "0" : "1042";
+
+    document.getElementById("corte05B").textContent = check.checked ? "0" : "824";
+    document.getElementById("corte10B").textContent = check.checked ? "0" : "812";
+
+    document.getElementById("corte05C").textContent = check.checked ? "0" : "932";
+    document.getElementById("corte10C").textContent = check.checked ? "0" : "1031";
+
+    document.getElementById("corte05D").textContent = check.checked ? "0" : "876";
+    document.getElementById("corte10D").textContent = check.checked ? "0" : "892";
+
+    document.getElementById("corte05E").textContent = check.checked ? "0" : "1071";
+    document.getElementById("corte10E").textContent = check.checked ? "0" : "1150";
+
 }
