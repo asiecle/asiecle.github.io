@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+<link rel="stylesheet" type="text/css" href="base.css" />
+<link rel="stylesheet" type="text/css" href="content.css" />
+<link rel="stylesheet" type="text/css" href="nav.css" />
+<meta http-equiv="content-type" content="text/html;  charset=utf-8" />
+<title>1.2. Conceptos básicos de redes | Redes Informáticas </title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<meta name="author" content="Alejandro Sierra" />
+<link rel="license" type="text/html" href="http://creativecommons.org/licenses/by-sa/4.0/" />
+<meta name="generator" content="eXeLearning 2.8.1 - exelearning.net" />
+<!--[if lt IE 9]><script type="text/javascript" src="exe_html5.js"></script><![endif]-->
+<script type="text/javascript" src="exe_jquery.js"></script>
+<script type="text/javascript" src="common_i18n.js"></script>
+<script type="text/javascript" src="common.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body class="exe-web-site" id="exe-node-6"><script type="text/javascript">document.body.className+=" js"</script>
+<div id="content">
+<p id="skipNav"><a href="#main" class="sr-av">Saltar la navegación</a></p>
+<header id="header" ><div id="headerContent">Redes Informáticas</div></header>
+<nav id="siteNav">
+<ul>
+   <li><a href="index.html" class="daddy main-node">REDES INFORMÁTICAS</a></li>
+   <li><a href="11_tipos_de_redes.html" class="no-ch">1.1. Tipos de Redes</a></li>
+   <li id="active"><a href="12_conceptos_bsicos_de_redes.html" class="active no-ch">1.2. Conceptos básicos de redes</a></li>
+   <li><a href="13_dispositivos_de_interconexin.html" class="no-ch">1.3. Dispositivos de Interconexión</a></li>
+   <li><a href="tareas.html" class="daddy">TAREAS</a>
+   <ul class="other-section">
+      <li><a href="tarea_1.html" class="no-ch">Tarea 1</a></li>
+      <li><a href="tarea_2.html" class="no-ch">Tarea 2</a></li>
+   </ul>
+   </li>
+   <li><a href="licencia_y_archivo_editable.html" class="no-ch">LICENCIA Y ARCHIVO EDITABLE</a></li>
+</ul>
+</nav>
+<div id='topPagination'>
+<nav class="pagination noprt">
+<a href="11_tipos_de_redes.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="13_dispositivos_de_interconexin.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+<div id="main-wrapper">
+<section id="main">
+<header id="nodeDecoration"><h1 id="nodeTitle">1.2. Conceptos básicos de redes</h1></header>
+<article class="iDevice_wrapper textIdevice" id="id6">
+<div class="iDevice emphasis0" >
+<div id="ta6_130_2" class="block iDevice_content">
+<div class="exe-text"><p>En el tema de redes informáticas se utilizan algunos conceptos propios que se definen a continuación:</p>
+<ul>
+<li><span style="font-size: 14pt; color: #0000ff;"><span style="font-size: 12pt;"><strong>Comunicación</strong></span>:</span> es el proceso que lleva un mensaje de un emisor a través de un canal a un receptor. En una red, los ordenadores son emisores y receptores al mismo tiempo. El canal es el medio por el que circulan los datos: cables, fibra, etc.</li>
+<li><span style="color: #0000ff;"><strong>Protocolo</strong></span>: Es el lenguaje y el conjunto de  reglas por las que emisor y receptor se  comunican. El protocolo más utilizado es el de internet: TCP/IP</li>
+<li><span style="color: #0000ff;"><strong>Dirección IP privada</strong></span>: Identifica a cada dispositivo en la red. Está formado por 4 números separados por puntos, con valores del 0 al 255. La IP de un equipo no trasciende en Internet, ya que es el router mediante su IP externa el que se identifica en las peticiones.</li>
+<li><span style="color: #0000ff;"><strong>Dirección IP Pública</strong></span>: Se denomina IP pública a aquella dirección IP que es visible desde Internet. Suele ser la que tiene el router o modem. Es la que da “la cara” a Internet. Esta IP suele ser proporcionada por el ISP (Empresa que te da acceso a internet: Orange, Movistar, etc.).</li>
+<li><span style="color: #0000ff;"><strong>Puerta de enlace</strong>:</span> Es la dirección IP por la que la red local sale al exterior, ya sea otra red o internet. Suele ser la IP del router (192.168.1.1). Es la misma para todos los equipos que comparten el router.</li>
+<li><span style="color: #0000ff;"><strong>Máscara de red</strong></span>: Se asemeja a la dirección IP, pero determina qué parte de la dirección IP especifica al equipo y qué parte a la subred a la que pertenece. Se usa para crear subredes. La máscara más común en redes pequeñas es 255.255.255.0 y nos indica que los tres primeros paquetes de 8 bits de la IP están destinados a identificar la red y sólo el cuarto a identificar al equipo por lo que nos ofrece un máximo teórico de 253 equipos conectables ya que el 0 es la dirección identificadora de red, el 1 es por defecto para el router y el 255 para difusión por lo que estos valores ya no se pueden utilizar.</li>
+<li><span style="color: #0000ff;"><strong>Grupo de trabajo</strong>:</span> Los equipos se agrupan en subredes para facilitar su uso. Para que los equipos de una misma red puedan comunicarse han de estar en el mismo grupo de trabajo.</li>
+<li><span style="color: #0000ff;"><strong>DNS</strong></span> (Sistema de Nombres por Dominio): Las direcciones IP son difíciles de recordar. Por ello se utiliza el DNS que traducen las direcciones IP en nombres fáciles para nosotros (Ejemplo: www.google.es). Los servidores DNS utilizados por defecto son los proporcionados por el ISP con el que se contrata el servicio (Yoigo, Vodafone, etc.). También hay DNS libres como las nuevas DNS libres de Google 8.8.8.8 y 8.8.8.4 que pueden sustituir a las DNS de nuestros proveedores en el caso de tener problemas de navegación.</li>
+<li><span style="color: #0000ff;"><strong>Tarjeta de red</strong>:</span> Es un elemento de hardware cuya función es enviar y recibir información  al resto de ordenadores. Puede estar integrado en la placa base o conectarse en una ranura de expansión. Cada tarjeta tiene un identificador único que se denomina dirección MAC, consta de un identificador hexadecimal de 6 bytes (48 bits). Los 3 primeros bytes, llamados OUI, indican el fabricante y los otros 3 sirven para diferenciar las tarjetas producidas por el mismo. Por ejemplo: 00-80-5A-39-0F-DE.</li>
+<li><span style="color: #0000ff;"><strong>Puerto</strong>:</span> Interfaz para comunicarse con un programa a través de la red. Ejemplo: el servicio http utiliza el puerto 80.</li>
+</ul>
+<p><iframe width="554" height="376" src="https://www.youtube.com/embed/tTHc37zSOT4" title="¿Qué es una Dirección IP y que tipos existen?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen"></iframe></p>
+<p><iframe width="554" height="376" src="https://www.youtube.com/embed/yYwxe1XjQDo" title="Qué es DNS y como funciona" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen"></iframe></p></div>
+</div>
+</div>
+</article>
+<div id="packageLicense" class="cc cc-by-sa">
+<p><span>Obra publicada con</span> <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Licencia Creative Commons Reconocimiento Compartir igual 4.0</a></p>
+</div>
+</section>
+</div>
+<div id='bottomPagination'>
+<nav class="pagination noprt">
+<a href="11_tipos_de_redes.html" class="prev"><span><span>&laquo; </span>Anterior</span></a> <span class="sep">| </span><a href="13_dispositivos_de_interconexin.html" class="next"><span>Siguiente<span> &raquo;</span></span></a>
+</nav>
+</div>
+</div>
+<p id="made-with-eXe"><a href="https://exelearning.net/" target="_blank" rel="noopener"><span>Creado con eXeLearning<span> (Ventana nueva)</span></span></a></p><script type="text/javascript" src="_adultos_js.js"></script></body></html>
